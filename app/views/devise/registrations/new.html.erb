@@ -15,6 +15,14 @@
     <%= f.input :password_confirmation,
                 required: true,
                 input_html: { autocomplete: "new-password" } %>
+    <%= f.input :type,
+                collection: ['joueur', 'MJ'],
+                required: true,
+                input_html: { autocomplete: "new-password" } %>
+    <%= f.input :name,
+                required: true %>
+    <%= f.input :description,
+                required: true %>
   </div>
 
   <div class="form-actions">
