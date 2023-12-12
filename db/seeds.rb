@@ -35,7 +35,7 @@ player2 = User.create!(
 # Seed NPCs
 clans = %w[Assamites Lasombra Ravnos Tzimisce Ventrue Brujah Gangrel Malkaviens Nosferatu Toreador Tremere humain ghoule inconnu]
 sectes = %w[anarch camarilla sabbat]
-pays = %w[France Italy Spain Greece]
+european_countries = %w[Albania Andorra Austria Belarus Belgium Bosnia_and_Herzegovina Bulgaria Croatia Cyprus Czech_Republic Denmark Estonia Finland France Germany Greece Hungary Iceland Ireland Italy Kosovo Latvia Liechtenstein Lithuania Luxembourg Malta Moldova Monaco Montenegro Netherlands North_Macedonia Norway Poland Portugal Romania Russia San_Marino Serbia Slovakia Slovenia Spain Sweden Switzerland Ukraine United_Kingdom Vatican_City]
 generations = %w[Inconnu G-13 G-12 G-11 G-10 G-9 G-8 G-7 G-6 G-5 G-4]
 
 100.times do
@@ -44,7 +44,7 @@ generations = %w[Inconnu G-13 G-12 G-11 G-10 G-9 G-8 G-7 G-6 G-5 G-4]
     generation: generations.sample,
     clan: clans.sample,
     secte: sectes.sample,
-    address: Faker::Address.country,
+    address: european_countries.sample,
     description: Faker::Fantasy::Tolkien.poem,
     user_id: [player1.id, player2.id].sample
   )

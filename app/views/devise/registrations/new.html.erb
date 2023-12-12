@@ -1,33 +1,62 @@
-<h2>Sign up</h2>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h2>Sign up</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'form' }) do |f| %>
+        <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" }%>
-    <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :type,
-                collection: ['joueur', 'MJ'],
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :name,
-                required: true %>
-    <%= f.input :description,
-                required: true %>
+        <div class="form-group">
+          <%= f.label :email %>
+          <%= f.input :email,
+                      required: true,
+                      autofocus: true,
+                      input_html: { autocomplete: "email", class: 'form-control' }, label: false%>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :password %>
+          <%= f.input :password,
+                      required: true,
+                      hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                      input_html: { autocomplete: "new-password", class: 'form-control' }, label: false %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :password_confirmation %>
+          <%= f.input :password_confirmation,
+                      required: true,
+                      input_html: { autocomplete: "new-password", class: 'form-control' }, label: false %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :type %>
+          <%= f.input :type,
+                      collection: ['joueur', 'MJ'],
+                      required: true,
+                      input_html: { autocomplete: "new-password", class: 'form-control' }, label: false %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :name %>
+          <%= f.input :name,
+                      required: true,
+                      input_html: { class: 'form-control' }, label: false %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :description %>
+          <%= f.input :description,
+                      required: true,
+                      input_html: { class: 'form-control' }, label: false %>
+        </div>
+
+        <div class="form-group">
+          <%= f.button :submit, "Sign up", class: 'btn btn-secondary' %>
+        </div>
+      <% end %>
+
+      <%= render "devise/shared/links" %>
+    </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

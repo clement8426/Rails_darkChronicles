@@ -1,9 +1,17 @@
-<% @npcs.each do |npc| %>
-  <div class="npc-item">
-    <h2><%= npc.name %> generation: <%= npc.generation %></h2>
-    <p><strong>Clan:</strong> <%= npc.clan %></p>
-    <p><strong>Secte:</strong> <%= npc.secte %></p>
-    <p><strong>Lieux:</strong> <%= npc.address %></p>
-    <p><strong>Description:</strong> <%= npc.description %></p>
+<div class="container">
+  <div class="row">
+    <% @npcs.each do |npc| %>
+      <div class="col-md-6 mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h2 class="card-title"><%= npc.name %> (Generation: <%= npc.generation %>)</h2>
+            <p class="card-text"><strong>Clan:</strong> <%= npc.clan %></p>
+            <p class="card-text"><strong>Secte:</strong> <%= npc.secte %></p>
+            <p class="card-text"><strong>Lieux:</strong> <%= npc.address %></p>
+            <p class="card-text"><strong>Description:</strong> <%= npc.description %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>
