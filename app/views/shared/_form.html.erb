@@ -5,15 +5,15 @@
     </div>
 
     <div class="col-md-4">
-      <%= f.input :clan_category, collection: ['Inconnu','Humain', 'Ghoule', 'Assamites', 'Baali', 'Brujah', 'Gangrel', 'Lasombra', 'Malkaviens', 'Nosferatu', 'Ravnos', 'Toreador', 'Tremere', 'Tzimisce', 'Ventrue'], selected: "Inconnu", label: false, input_html: { class: "form-control" }, required: false %>
+      <%= f.input :clan_category, collection: ['Inconnu','Humain', 'Ghoule', 'Assamites', 'Baali', 'Brujah', 'Gangrel', 'Lasombra', 'Malkaviens', 'Nosferatu', 'Ravnos', 'Toreador', 'Tremere', 'Tzimisce', 'Ventrue'], include_blank: "clan_category" , label: false, input_html: { class: "form-control" }, required: false %>
     </div>
 
     <div class="col-md-2">
-      <%= f.input :generation_category, collection: ["Inconnu", "13", "12", "11", "10", "9", "8", "7", "6", "5", "4"], selected: "Inconnu", label: false, input_html: { class: "form-control" }, required: false %>
+      <%= f.input :generation_category, collection: ["Inconnu", "G-13", "G-12", "G-11", "G-10", "G-9", "G-8", "G-7", "G-6", "G-5", "G-4"], include_blank: "generation_category", label: false, input_html: { class: "form-control" }, required: false %>
     </div>
 
     <div class="col-md-2">
-      <%= f.input :secte_category, collection: ["Inconnu", "Anarch", "Camarilla", "Sabbat"], selected: "Inconnu", label: false, input_html: { class: "form-control" }, required: false %>
+      <%= f.input :secte_category, collection: ["Inconnu", "Anarch", "Camarilla", "Sabbat"], include_blank: "secte_category", label: false, input_html: { class: "form-control" }, required: false %>
     </div>
   </div>
 

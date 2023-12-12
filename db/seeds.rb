@@ -36,14 +36,15 @@ player2 = User.create!(
 clans = %w[Assamites Lasombra Ravnos Tzimisce Ventrue Brujah Gangrel Malkaviens Nosferatu Toreador Tremere humain ghoule inconnu]
 sectes = %w[anarch camarilla sabbat]
 pays = %w[France Italy Spain Greece]
+generations = %w[Inconnu G-13 G-12 G-11 G-10 G-9 G-8 G-7 G-6 G-5 G-4]
 
 100.times do
   npc = Npc.create!(
-    name: Faker::Fantasy::Tolkien.character,
-    generation: rand(4..10),
+    name: Faker::Games::DnD.name,
+    generation: generations.sample,
     clan: clans.sample,
     secte: sectes.sample,
-    address: "#{Faker::Address.street_address}, #{pays.sample}",
+    address: Faker::Address.country,
     description: Faker::Fantasy::Tolkien.poem,
     user_id: [player1.id, player2.id].sample
   )
