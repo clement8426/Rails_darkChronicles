@@ -1,2 +1,10 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<meta name="csrf-token" content="<%= form_authenticity_token %>">
+
+<div class="banner">
+  <div class="row mx-0">
+    <div class="form bg-light">
+      <h3 class="mb-5 font-size-40">Cherche ton pnj !</h3>
+      <%= render "shared/form" %>
+    </div>
+  </div>
+</div>

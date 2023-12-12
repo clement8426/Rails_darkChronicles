@@ -1,0 +1,9 @@
+<% @npcs.each do |npc| %>
+  <div class="npc-item">
+    <h2><%= npc.name %> generation: <%= npc.generation %></h2>
+    <p><strong>Clan:</strong> <%= npc.clan %></p>
+    <p><strong>Secte:</strong> <%= npc.secte %></p>
+    <p><strong>Lieux:</strong> <%= npc.address %></p>
+    <p><strong>Description:</strong> <%= npc.description %></p>
+  </div>
+<% end %>

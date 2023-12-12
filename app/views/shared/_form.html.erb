@@ -1,0 +1,25 @@
+<%= simple_form_for :query, url: npc_index_path, method: :get do |f| %>
+  <div class="row">
+    <div class="col-md-4">
+      <%= f.text_field :query, class: "form-control", placeholder: "Type a keyword" %>
+    </div>
+
+    <div class="col-md-4">
+      <%= f.input :clan_category, collection: ['Inconnu','Humain', 'Ghoule', 'Assamites', 'Baali', 'Brujah', 'Gangrel', 'Lasombra', 'Malkaviens', 'Nosferatu', 'Ravnos', 'Toreador', 'Tremere', 'Tzimisce', 'Ventrue'], selected: "Inconnu", label: false, input_html: { class: "form-control" }, required: false %>
+    </div>
+
+    <div class="col-md-2">
+      <%= f.input :generation_category, collection: ["Inconnu", "13", "12", "11", "10", "9", "8", "7", "6", "5", "4"], selected: "Inconnu", label: false, input_html: { class: "form-control" }, required: false %>
+    </div>
+
+    <div class="col-md-2">
+      <%= f.input :secte_category, collection: ["Inconnu", "Anarch", "Camarilla", "Sabbat"], selected: "Inconnu", label: false, input_html: { class: "form-control" }, required: false %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 offset-md-4 text-center">
+      <%= f.button :submit, "C'est parti !",  class: "btn-primary btn-form-home mx-auto" %>
+    </div>
+  </div>
+<% end %>
