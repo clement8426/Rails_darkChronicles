@@ -1,7 +1,7 @@
 <%= simple_form_for :query, url: npc_index_path, method: :get, data: { controller: "search", action: "send" } do |f| %>
   <div class="row">
     <div class="col-md-4">
-      <%= f.text_field :query, class: "form-control", placeholder: "Type a keyword" %>
+      <%= f.text_field :query, class: "form-control", placeholder: "Mots-clés" %>
     </div>
 
     <div class="col-md-4">
