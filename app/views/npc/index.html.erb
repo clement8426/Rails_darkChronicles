@@ -1,5 +1,11 @@
 <div class="container">
   <div class="row">
+    <div class="mx-0">
+      <div class="form bg-light">
+        <h3 class="mb-5 font-size-40">Cherche ton pnj !</h3>
+        <%= render "shared/form" %>
+      </div>
+    </div>
     <% @npcs.each do |npc| %>
       <div class="col-md-6 mb-4">
         <div class="card h-100">
