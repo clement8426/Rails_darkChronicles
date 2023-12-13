@@ -1,27 +1,60 @@
+<!-- Add this to your existing view file (e.g., app/views/pages/joueur.html.erb) -->
+
 <div class="container">
   <div class="row">
     <div class="col-md-4">
       <h2><%= current_user.name %></h2>
       <p><%= current_user.description %></p>
-      <%= simple_form_for @sheet, html: { multipart: true } do |form| %>
-      <%= form.input :title %>
-      <%= form.input :pdf, as: :file  %>
-      <div class="actions">
-        <%= form.submit %>
-      </div>
+
+      <!-- Form for adding new sheets -->
+      <%= simple_form_for Sheet.new, url: sheets_path, html: { multipart: true }, remote: true do |form| %>
+        <%= form.input :title %>
+        <%= form.input :pdf, as: :file %>
+        <div class="actions">
+          <%= form.submit 'Add Sheet' %>
+        </div>
       <% end %>
 
+      <h3>Sheets:</h3>
+      <% current_user.sheets.each do |sheet| %>
+        <%= button_to sheet.title, sheet_path(sheet), method: :get, class: 'btn btn-primary sheet-button' %>
+      <% end %>
     </div>
-    <div class="col-md-8">
+
+    <div class="col-md-8" id="sheet-details">
       <% if @sheet && @sheet.pdf.attached? %>
-      <h1><%= @sheet.title %></h1>
-      <div>
-      <iframe src="<%= rails_blob_path(@sheet.pdf, disposition: 'inline') %>" width="100%" height="800px"></iframe>
-      </div>
+        <h1><%= @sheet.title %></h1>
+        <div>
+          <iframe src="<%= rails_blob_path(@sheet.pdf, disposition: 'inline') %>" width="100%" height="800px"></iframe>
+        </div>
         <%= link_to "Download PDF", rails_blob_path(@sheet.pdf, disposition: "attachment") %>
       <% else %>
         <p>No PDF attached.</p>
-      <% end %>
-    </div>
+      <% end %>    </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.sheet-button').forEach(function (button) {
+      button.addEventListener('click', function (event) {
+        event.preventDefault();
+        var sheetPath = this.getAttribute('href');
+        loadSheetDetails(sheetPath);
+      });
+    });
+
+    function loadSheetDetails(sheetPath) {
+      Rails.ajax({
+        url: sheetPath,
+        type: 'GET',
+        success: function (data) {
+          document.getElementById('sheet-details').innerHTML = data;
+        },
+        error: function (data) {
+          console.error('Error loading sheet details:', data);
+        }
+      });
+    }
+  });
+</script>
