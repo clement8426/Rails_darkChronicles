@@ -16,7 +16,7 @@
       <% if @sheet && @sheet.pdf.attached? %>
       <h1><%= @sheet.title %></h1>
       <div>
-      <iframe src="<%= rails_blob_path(@sheet.pdf, disposition: 'inline') %>" width="100%" height="600px"></iframe>
+      <iframe src="<%= rails_blob_path(@sheet.pdf, disposition: 'inline') %>" width="100%" height="800px"></iframe>
       </div>
         <%= link_to "Download PDF", rails_blob_path(@sheet.pdf, disposition: "attachment") %>
       <% else %>
