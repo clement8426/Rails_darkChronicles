@@ -1,0 +1,41 @@
+<!-- app/views/shared/_form_for_new_character.html.erb -->
+
+<%= simple_form_for :new_character, url: search_npc_index_path, method: :post, remote: true, html: { class: "d-none", 'data-action': "click->modal#toggle", 'data-modal-target': "myModalForm" } do |f| %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :name, label: "Nom", class: "form-control", placeholder: "Entrez le nom du personnage", label: false %>
+    </div>
+
+    <div class="col-md-6">
+      <%= f.input :clan, label: "Clan", collection: ['Inconnu','Humain', 'Ghoule', 'Assamites', 'Baali', 'Brujah', 'Gangrel', 'Lasombra', 'Malkaviens', 'Nosferatu', 'Ravnos', 'Toreador', 'Tremere', 'Tzimisce', 'Ventrue'], include_blank: "Sélectionnez un clan", class: "form-control", label: false %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :secte, label: "Secte", collection: ["Inconnu", "Anarch", "Camarilla", "Sabbat"], include_blank: "Sélectionnez une secte", class: "form-control", label: false %>
+    </div>
+
+    <div class="col-md-6">
+      <%= f.input :generation, label: "Génération", collection: ["Inconnu", "G-13", "G-12", "G-11", "G-10", "G-9", "G-8", "G-7", "G-6", "G-5", "G-4"], include_blank: "Sélectionnez une génération", class: "form-control", label: false %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <%= f.input :address, label: "Adresse", class: "form-control", placeholder: "Entrez l'adresse du personnage", label: false %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <%= f.input :description, label: "Description", as: :text, class: "form-control", placeholder: "Entrez une description du personnage", label: false %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 offset-md-4 text-center">
+      <%= f.button :submit, "Créer le personnage", class: "btn btn-secondary btn-form-home mx-auto" %>
+    </div>
+  </div>
+<% end %>
