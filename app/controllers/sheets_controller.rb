@@ -12,7 +12,13 @@ class SheetsController < ApplicationController
       render :new
     end
   end
-
+  def show
+    @sheet = Sheet.find(params[:id])
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @sheet }
+    end
+  end
 
   private
 

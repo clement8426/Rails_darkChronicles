@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :find_or_build_user_sheet, only: [:joueur]
 
   def joueur
+    raise
     if @sheet.persisted?
     end
   end

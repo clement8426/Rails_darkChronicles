@@ -1,8 +1,6 @@
-<!-- Add this to your existing view file (e.g., app/views/pages/joueur.html.erb) -->
-
 <div class="container">
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4" data-controller="sheet">
       <h2><%= current_user.name %></h2>
       <p><%= current_user.description %></p>
 
@@ -16,9 +14,11 @@
       <% end %>
 
       <h3>Sheets:</h3>
-      <% current_user.sheets.each do |sheet| %>
-        <%= button_to sheet.title, sheet_path(sheet), method: :get, class: 'btn btn-primary sheet-button' %>
-      <% end %>
+      <div>
+        <% current_user.sheets.each do |sheet| %>
+          <%= button_to sheet.title, sheet_path(sheet), method: :get, class: 'btn btn-primary sheet-button', data: { sheet_id: sheet.id }, 'data-action' => 'click->sheet#loadSheetDetails' %>
+        <% end %>
+      </div>
     </div>
 
     <div class="col-md-8" id="sheet-details">
@@ -27,34 +27,9 @@
         <div>
           <iframe src="<%= rails_blob_path(@sheet.pdf, disposition: 'inline') %>" width="100%" height="800px"></iframe>
         </div>
-        <%= link_to "Download PDF", rails_blob_path(@sheet.pdf, disposition: "attachment") %>
       <% else %>
         <p>No PDF attached.</p>
-      <% end %>    </div>
+      <% end %>
+    </div>
   </div>
 </div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.sheet-button').forEach(function (button) {
-      button.addEventListener('click', function (event) {
-        event.preventDefault();
-        var sheetPath = this.getAttribute('href');
-        loadSheetDetails(sheetPath);
-      });
-    });
-
-    function loadSheetDetails(sheetPath) {
-      Rails.ajax({
-        url: sheetPath,
-        type: 'GET',
-        success: function (data) {
-          document.getElementById('sheet-details').innerHTML = data;
-        },
-        error: function (data) {
-          console.error('Error loading sheet details:', data);
-        }
-      });
-    }
-  });
-</script>
