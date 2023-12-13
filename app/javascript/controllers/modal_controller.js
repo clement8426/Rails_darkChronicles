@@ -4,17 +4,20 @@ import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
   static targets = ["button", "myModalForm"];
 
-  connect() {}
+  connect() {
+    if (this.buttonTarget) {
+      this.buttonTarget.addEventListener(
+        "click",
+        this.handleButtonClick.bind(this)
+      );
+    }
+  }
 
-  toggle() {
+  handleButtonClick(event) {
+    event.preventDefault(); // Prevent the default behavior of the button if needed
+
     if (this.myModalFormTarget) {
-      const isHidden = this.myModalFormTarget.classList.contains("d-none");
-
-      if (isHidden) {
-        this.myModalFormTarget.classList.remove("d-none");
-      } else {
-        this.myModalFormTarget.classList.add("d-none");
-      }
+      this.myModalFormTarget.classList.toggle("d-none");
     } else {
       console.error("Form element not found");
     }
