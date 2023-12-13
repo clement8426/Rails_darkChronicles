@@ -1,19 +1,18 @@
 class SheetsController < ApplicationController
   def create
-    # Other code for handling form submission...
-
-    # Assuming the PDF file is part of the form parameters (e.g., params[:sheet][:pdf])
     uploaded_file = params[:sheet][:pdf]
-
-    # Upload the PDF to Cloudinary
-    cloudinary_response = Cloudinary::Uploader.upload(uploaded_file.tempfile.path)
-
 
     @sheet = Sheet.new(sheet_params)
     @sheet.user = current_user
-    @sheet.save!
+    @sheet.pdf.attach(uploaded_file)  # Remove the 'service: :amazon' argument
 
+    if @sheet.save
+      redirect_to @sheet, notice: 'Sheet was successfully created.'
+    else
+      render :new
+    end
   end
+
 
   private
 
