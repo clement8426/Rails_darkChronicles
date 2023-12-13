@@ -2,8 +2,6 @@ class Npc < ApplicationRecord
   belongs_to :user
   include PgSearch::Model
 
-  multisearchable against: [:name, :clan, :secte, :generation, :address, :description]
-
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
 
@@ -12,4 +10,5 @@ class Npc < ApplicationRecord
     using: {
       tsearch: { prefix: true }
     }
+
 end

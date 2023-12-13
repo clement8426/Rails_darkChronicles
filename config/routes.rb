@@ -12,8 +12,10 @@ Rails.application.routes.draw do
   resources :npc do
     collection do
       get :search
+      post :create
     end
   end
+
   resources :groups
   get "mj", to: "pages#mj"
   get "joueur", to: "pages#joueur"

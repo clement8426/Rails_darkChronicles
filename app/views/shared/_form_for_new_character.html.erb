@@ -1,6 +1,6 @@
 <!-- app/views/shared/_form_for_new_character.html.erb -->
 
-<%= simple_form_for :new_character, url: search_npc_index_path, method: :post, remote: true, html: { class: "d-none", 'data-action': "click->modal#toggle", 'data-modal-target': "myModalForm" } do |f| %>
+<%= simple_form_for :new_character, url: npc_index_path, turbo_method: :post, remote: true, html: { class: "d-none", 'data-modal-target': "myModalForm" } do |f| %>
   <div class="row">
     <div class="col-md-6">
       <%= f.input :name, label: "Nom", class: "form-control", placeholder: "Entrez le nom du personnage", label: false %>
