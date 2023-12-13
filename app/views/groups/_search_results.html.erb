@@ -1,0 +1,12 @@
+<% if @users.present? %>
+  <div class="row mt-3">
+    <div class="col-md-12">
+      <h3>Résultats de la recherche :</h3>
+      <ul class="list-group">
+        <% @users.each do |user| %>
+          <li class="list-group-item"><%= user.name %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>

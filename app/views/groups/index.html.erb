@@ -1,0 +1,12 @@
+<%= simple_form_for :query, url: users_path, method: :get, data: { controller: "search", action: "submit->search#search" } do |f| %>
+  <div class="row">
+    <div class="col-md-7">
+      <%= f.text_field :query, class: "form-control", placeholder: "Type a keyword" %>
+    </div>
+    <div class="col-md-5">
+      <%= f.button :submit, "C'est parti !", class: "btn btn-secondary btn-form-home" %>
+    </div>
+  </div>
+<% end %>
+
+<div data-target="search.result"></div>
