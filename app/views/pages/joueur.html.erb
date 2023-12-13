@@ -3,9 +3,25 @@
     <div class="col-md-4">
       <h2><%= current_user.name %></h2>
       <p><%= current_user.description %></p>
+      <%= simple_form_for @sheet, html: { multipart: true } do |form| %>
+      <%= form.input :title %>
+      <%= form.input :pdf, as: :file  %>
+      <div class="actions">
+        <%= form.submit %>
+      </div>
+      <% end %>
+
     </div>
     <div class="col-md-8">
-      <!-- Partie vide à droite -->
+      <% if @sheet && @sheet.pdf.attached? %>
+      <h1><%= @sheet.title %></h1>
+      <div>
+      <iframe src="<%= rails_blob_path(@sheet.pdf, disposition: 'inline') %>" width="100%" height="600px"></iframe>
+      </div>
+        <%= link_to "Download PDF", rails_blob_path(@sheet.pdf, disposition: "attachment") %>
+      <% else %>
+        <p>No PDF attached.</p>
+      <% end %>
     </div>
   </div>
 </div>
