@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   def joueur
     @sheets = current_user.sheets
-
+    @sheet = Sheet.new
     if @sheet.persisted?
     end
   end
