@@ -11,8 +11,6 @@
           <%= form.submit 'Add Sheet' %>
         </div>
       <% end %>
-
-
     </div>
 
     <div class="col-md-8" id="sheet-details">
@@ -26,6 +24,8 @@
             <% else %>
               <p>No PDF attached.</p>
             <% end %>
+
+          <%= link_to 'Delete Sheet', sheet, method: :delete, remote: true, data: { turbo_method: :delete, turbo_frame: "sheet_#{sheet.id}" }, class: 'btn btn-danger' %>
           </div>
         </div>
       <% end %>

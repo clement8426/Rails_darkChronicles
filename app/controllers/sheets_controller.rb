@@ -20,6 +20,12 @@ class SheetsController < ApplicationController
     end
   end
 
+
+  def destroy
+    @sheet = Sheet.find(params[:id])
+    @sheet.destroy
+  end
+
   private
 
   def sheet_params
