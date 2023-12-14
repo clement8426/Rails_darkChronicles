@@ -13,22 +13,22 @@
         </div>
       <% end %>
 
-      <h3>Sheets:</h3>
-      <div>
-        <% current_user.sheets.each do |sheet| %>
-          <%= button_to sheet.title, sheet_path(sheet), method: :get, class: 'btn btn-primary sheet-button', data: { sheet_id: sheet.id }, 'data-action' => 'click->sheet#loadSheetDetails' %>
-        <% end %>
-      </div>
+
     </div>
 
     <div class="col-md-8" id="sheet-details">
-      <% if @sheet && @sheet.pdf.attached? %>
-        <h1><%= @sheet.title %></h1>
-        <div>
-          <iframe src="<%= rails_blob_path(@sheet.pdf, disposition: 'inline') %>" width="100%" height="800px"></iframe>
+      <h3>Feuille(s) de personnage(s):</h3>
+      <% @sheets.each do |sheet| %>
+        <div id="sheet">
+          <h1><%= sheet.title %></h1>
+          <div>
+            <% if sheet.pdf.attached? %>
+              <iframe src="<%= rails_blob_path(sheet.pdf, disposition: 'inline') %>" width="100%" height="800px"></iframe>
+            <% else %>
+              <p>No PDF attached.</p>
+            <% end %>
+          </div>
         </div>
-      <% else %>
-        <p>No PDF attached.</p>
       <% end %>
     </div>
   </div>
