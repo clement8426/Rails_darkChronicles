@@ -1,0 +1,24 @@
+<%= simple_form_for :query, url: add_user_group_path(@group), method: :get, data: { controller: "groups", action: "submit->groups#add_user" } do |f| %>
+  <div class="row">
+    <div class="col-md-7">
+      <%= f.text_field :query, class: "form-control", placeholder: "Rechercher par nom" %>
+    </div>
+    <div class="col-md-5">
+      <%= f.button :submit, "Rechercher", class: "btn btn-secondary btn-form-home" %>
+    </div>
+  </div>
+<% end %>
+
+<div class="row mt-3">
+  <div class="col-md-12">
+    <h3>Résultats de la recherche :</h3>
+    <ul class="list-group">
+      <% @users.each do |user| %>
+        <li class="list-group-item">
+          <%= user.name %>
+          <%= button_to "Ajouter au Groupe", add_user_group_path(@group, user_id: user.id), method: :post, class: "btn btn-primary", remote: true %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
