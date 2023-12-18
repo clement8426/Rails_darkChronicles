@@ -17,9 +17,15 @@ class GroupsController < ApplicationController
     @group.maitre_de_jeu = current_user
 
     if @group.save
-      render turbo_stream: turbo_stream.replace('your-frame-id', partial: 'groups/index')
+      respond_to do |format|
+        format.html { redirect_to mj_path }
+        format.json { render json: @group, status: :created, location: @npc }
+      end
     else
-      render :new, status: :unprocessable_entity
+      respond_to do |format|
+        format.html { render :new }
+        format.json { render json: @group.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -27,9 +33,15 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
     @group.destroy
 
+    redirect_path = if @group.destroyed?
+                      groups_path
+                    else
+                      mj_path
+                    end
+
     respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.remove(@group) }
-      format.html { redirect_to groups_path, notice: 'Group was successfully destroyed.' }
+      format.html { redirect_to redirect_path, notice: 'Group was successfully destroyed.' }
+      format.json { render json: @group, status: :created, location: @group }
     end
   end
 

@@ -1,23 +1,27 @@
 <div class="row mt-4">
-  <% @groups.each do |group| %>
-    <div class="col-md-4 mb-4">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title"><%= group.name %></h5>
-          <p class="card-text">MJ : <%= group.maitre_de_jeu.name %></p>
+  <% if @groups.present? %>
+    <% @groups.each do |group| %>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><%= group.name %></h5>
+            <p class="card-text">MJ : <%= group.maitre_de_jeu.name %></p>
 
-          <ul class="list-group list-group-flush">
-            <h6 class="card-subtitle mb-2 text-muted">Joueurs :</h6>
-            <% group.joueurs.each do |player| %>
-              <li class="list-group-item"><%= player.name %></li>
-            <% end %>
-          </ul>
+            <ul class="list-group list-group-flush">
+              <h6 class="card-subtitle mb-2 text-muted">Joueurs :</h6>
+              <% group.joueurs.each do |player| %>
+                <li class="list-group-item"><%= player.name %></li>
+              <% end %>
+            </ul>
 
-          <%= link_to "Ajouter un utilisateur ", add_user_group_path(group) %>
+            <%= link_to "Ajouter un utilisateur ", add_user_group_path(group) %>
 
-          <%= button_to "Supprimer", group_path(group), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm mt-2', remote: true %>
+            <%= button_to "Supprimer", group_path(group), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm mt-2', remote: true %>
+          </div>
         </div>
       </div>
-    </div>
+    <% end %>
+  <% else %>
+    <p>Aucun groupes</p>
   <% end %>
 </div>
