@@ -13,7 +13,9 @@
             <% end %>
           </ul>
 
-          <%= button_to "Ajouter un joueur", add_user_group_path(group, user_id: current_user.id), method: :post, class: "btn btn-secondary btn-sm mt-2", remote: true %>
+          <%= link_to "Ajouter un utilisateur ", add_user_group_path(group) %>
+
+          <%= button_to "Supprimer", group_path(group), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm mt-2', remote: true %>
         </div>
       </div>
     </div>

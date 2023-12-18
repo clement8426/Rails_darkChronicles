@@ -20,9 +20,11 @@ Rails.application.routes.draw do
   resources :sheets
   resources :groups
   resources :groups do
-    member do
-      post 'add_user'
-    end
+    post 'add_user', on: :member
+    get 'add_user', on: :member
+    get 'search', on: :collection
+    get 'add_user', to: 'groups#add_user'
+    post 'add_user_to_group', to: 'groups#add_user_to_group'
   end
   get "mj", to: "pages#mj"
   get "joueur", to: "pages#joueur"
