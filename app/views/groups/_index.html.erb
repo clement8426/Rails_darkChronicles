@@ -1,0 +1,21 @@
+<div class="row mt-4">
+  <% @groups.each do |group| %>
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><%= group.name %></h5>
+          <p class="card-text">MJ : <%= group.maitre_de_jeu.name %></p>
+
+          <ul class="list-group list-group-flush">
+            <h6 class="card-subtitle mb-2 text-muted">Joueurs :</h6>
+            <% group.joueurs.each do |player| %>
+              <li class="list-group-item"><%= player.name %></li>
+            <% end %>
+          </ul>
+
+          <%= button_to "Ajouter un joueur", add_user_group_path(group, user_id: current_user.id), method: :post, class: "btn btn-primary btn-sm mt-2", remote: true %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

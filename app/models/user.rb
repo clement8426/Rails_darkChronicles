@@ -3,8 +3,16 @@ class User < ApplicationRecord
   belongs_to :group, class_name: 'Group', foreign_key: 'group_id', optional: true
   has_many :sheets
   has_many :npcs
+  has_many :managed_groups, class_name: 'Group', foreign_key: 'user_id'
 
 
+  include PgSearch::Model
+
+  pg_search_scope :search_by_name,
+    against: [:name],
+    using: {
+      tsearch: { prefix: true }
+    }
   # include PgSearch::Model
   # pg_search_scope :search_by_name,
   #   against: [ :name ],

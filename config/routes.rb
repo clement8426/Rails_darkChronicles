@@ -19,6 +19,11 @@ Rails.application.routes.draw do
 
   resources :sheets
   resources :groups
+  resources :groups do
+    member do
+      post 'add_user'
+    end
+  end
   get "mj", to: "pages#mj"
   get "joueur", to: "pages#joueur"
   get 'search_joueur', to: 'groups#add_joueur'
