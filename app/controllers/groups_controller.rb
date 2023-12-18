@@ -75,6 +75,7 @@ class GroupsController < ApplicationController
                       </div>
                     <% end %>
                   </div>
+                  <p id="notice-message">Joueur ajouté au groupe avec succès.</p> <!-- Include a space for the notice -->
                 }
               )
             ]
@@ -89,7 +90,6 @@ class GroupsController < ApplicationController
       end
     end
   end
-
 
 
 

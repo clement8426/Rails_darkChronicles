@@ -1,0 +1,16 @@
+<turbo-stream action="replace" target="your-frame-id">
+  <template>
+    <div class="row mt-4">
+      <% @group.joueurs.each do |player| %>
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><%= player.name %></h5>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <p id="notice-message">Joueur ajouté au groupe avec succès.</p>
+  </template>
+</turbo-stream>
