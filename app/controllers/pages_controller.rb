@@ -14,4 +14,10 @@ class PagesController < ApplicationController
       }
     end
   end
+
+  def mj
+    @groups = current_user.managed_groups.includes(:joueurs)
+    @group = Group.new
+
+  end
 end

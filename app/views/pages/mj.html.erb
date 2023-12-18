@@ -1,1 +1,15 @@
-<%= link_to "Chercher un joueur", search_joueur_path, class: "btn btn-primary" %>
+<div class="container">
+  <h1>Groupes gérés par le MJ</h1>
+
+  <div class="create-group">
+    <h2>Créer un nouveau groupe</h2>
+
+    <%= simple_form_for @group, url: groups_path, method: :post, class: 'form', data: { turbo_frame: 'your-frame-id' } do |f| %>
+      <div class="mb-3">
+        <%= f.input :name, class: 'form-control', placeholder: 'Saisissez le nom du groupe' %>
+      </div>
+      <%= f.button :submit, 'Créer le groupe', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+
+  <%= render "groups/index" %>
