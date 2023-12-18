@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   self.inheritance_column = nil
-  belongs_to :group, class_name: 'Group', foreign_key: 'group_id', optional: true
+  has_many :groups
   has_many :sheets
   has_many :npcs
   has_many :managed_groups, class_name: 'Group', foreign_key: 'user_id'
