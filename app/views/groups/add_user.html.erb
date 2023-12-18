@@ -16,7 +16,7 @@
       <% @users.each do |user| %>
         <li class="list-group-item">
           <%= user.name %>
-          <%= button_to "Ajouter au Groupe", add_user_group_path(@group, user_id: user.id), method: :post, class: "btn btn-primary", remote: true %>
+          <%= button_to "Ajouter au Groupe",   add_user_group_path(@group, user_id: user.id), method: :post, class: "btn btn-secondary", remote: true, data: { turbo_frame: 'add_user' } %>
         </li>
       <% end %>
     </ul>

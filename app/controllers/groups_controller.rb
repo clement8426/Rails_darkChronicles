@@ -45,32 +45,54 @@ class GroupsController < ApplicationController
     end
   end
 
-  def search
-    @users = User.search_by_name(params[:query])
-  end
 
   def add_user
     @group = Group.find(params[:id])
 
     if params[:query].present? && params[:query][:query].present?
       @users = User.where(type: "joueur").search_by_name(params[:query][:query])
-
     else
       @users = User.where(type: "joueur")
     end
-  end
 
-  def add_user_to_group
-    @group = Group.find(params[:id])
-    @user = User.find(params[:user_id])
+    if params[:user_id].present?
+      @user = User.find(params[:user_id])
 
-    if @group.joueurs << @user
-      redirect_to group_path(@group), notice: "Joueur ajouté au groupe avec succès."
-    else
-      # Gérer l'échec, par exemple, en redirigeant vers une page d'erreur
-      redirect_to root_path, alert: "Impossible d'ajouter le joueur au groupe."
+      if @group.joueurs << @user
+        respond_to do |format|
+          format.turbo_stream {
+            render turbo_stream: [
+              turbo_stream.replace("your-frame-id",
+                %{
+                  <div class="row mt-4">
+                    <% @group.joueurs.each do |player| %>
+                      <div class="col-md-4 mb-4">
+                        <div class="card">
+                          <div class="card-body">
+                            <h5 class="card-title"><%= player.name %></h5>
+                          </div>
+                        </div>
+                      </div>
+                    <% end %>
+                  </div>
+                }
+              )
+            ]
+          }
+          format.html { redirect_to group_path(@group), notice: "Joueur ajouté au groupe avec succès." }
+        end
+      else
+        respond_to do |format|
+          format.turbo_stream { render turbo_stream.replace("your-frame-id", partial: "groups/index") }
+          format.html { redirect_to root_path, alert: "Impossible d'ajouter le joueur au groupe." }
+        end
+      end
     end
   end
+
+
+
+
 
   private
 
