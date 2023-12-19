@@ -43,7 +43,7 @@
             <h1><%= sheet.title %></h1>
             <div>
               <% if sheet.pdf.attached? %>
-                <iframe src="<%= rails_blob_path(sheet.pdf, disposition: 'inline') %>" width="100%" height="800px"></iframe>
+                <iframe src="<%= rails_blob_path(sheet.pdf, disposition: 'inline') %>" width="90%" height="800px"></iframe>
               <% else %>
                 <p>Aucun PDF attaché.</p>
               <% end %>
@@ -56,7 +56,7 @@
         <!-- Afficher un PDF par défaut lorsqu'il n'y a pas de fiches -->
         <div id="sheet">
           <h1>Modèle de fiche de personnage à télécharger.</h1>
-          <iframe src="https://dark-chronicles.s3.eu-west-3.amazonaws.com/vampire.pdf" width="100%" height="800px"></iframe>
+          <iframe src="https://dark-chronicles.s3.eu-west-3.amazonaws.com/vampire.pdf" width="90%" height="800px"></iframe>
         </div>
       <% end %>
     </div>
