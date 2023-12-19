@@ -17,12 +17,48 @@ class NpcController < ApplicationController
 
     if @npc.save
       respond_to do |format|
-        format.html { redirect_to @npc, notice: 'NPC créé avec succès.' }
+        format.html { redirect_to @npc, notice: 'PNJ créé avec succès.' }
         format.json { render json: @npc, status: :created, location: @npc }
       end
     else
       respond_to do |format|
         format.html { render :new }
+        format.json { render json: @npc.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def edit
+    @npc = Npc.find(params[:id])
+  end
+
+  def update
+    @npc = Npc.find(params[:id])
+
+    if @npc.update(npc_params_edit)
+      respond_to do |format|
+        format.html { redirect_to @npc, notice: 'PNJ mis à jour avec succès.' }
+        format.json { render json: @npc, status: :ok, location: @npc }
+      end
+    else
+      respond_to do |format|
+        format.html { render :edit }
+        format.json { render json: @npc.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def destroy
+    @npc = Npc.find(params[:id])
+
+    if @npc.destroy
+      respond_to do |format|
+        format.html { redirect_to npc_index_path, notice: 'NPC supprimé avec succès.' }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to npc_index_path, alert: 'Erreur lors de la suppression du NPC.' }
         format.json { render json: @npc.errors, status: :unprocessable_entity }
       end
     end
@@ -34,7 +70,9 @@ class NpcController < ApplicationController
     params.require(:new_character).permit(:name, :clan, :secte, :generation, :address, :description)
   end
 
-  private
+  def npc_params_edit
+    params.require(:npc).permit(:name, :clan, :secte, :generation, :address, :description)
+  end
 
   def search_params_present
     params[:query].present? && params[:query].values.any?(&:present?)

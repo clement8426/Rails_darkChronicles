@@ -1,0 +1,45 @@
+<!-- app/views/groups/show.html.erb -->
+<div class="container">
+<h1>Groupe : <%= @group.name %></h1>
+
+  <div class="row">
+    <div class="col-md-4">
+      <h2>Liste des Utilisateurs :</h2>
+
+      <% if @group.joueurs.present? %>
+        <ul>
+          <% @group.joueurs.each do |player| %>
+            <li><%= player.name %></li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>Aucun utilisateur dans ce groupe.</p>
+      <% end %>
+  <%= link_to 'Retour à la liste des groupes', mj_path, class: 'btn btn-secondary mt-4' %>
+    </div>
+
+    <div class="col-md-8">
+      <h2>Feuilles associées :</h2>
+
+      <% if @group.joueurs.present? %>
+        <div>
+          <% @group.joueurs.each do |player| %>
+            <% player.sheets.each do |sheet| %>
+              <% if sheet.pdf.attached? %>
+                <div>
+                  <h3>Nom du joueur <%= player.name %> - Nom du perso <%= sheet.title %></h3>
+                  <iframe src="<%= rails_blob_path(sheet.pdf, disposition: 'inline') %>" width="90%" height="800px"></iframe>
+                </div>
+              <% else %>
+                <p>No PDF attached for <%= player.name %>'s Sheet - <%= sheet.title %>.</p>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      <% else %>
+        <p>Aucun utilisateur dans ce groupe.</p>
+      <% end %>
+    </div>
+  </div>
+
+</div>

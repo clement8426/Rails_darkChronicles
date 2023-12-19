@@ -1,6 +1,6 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+<div id="top" class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
-    <%= link_to root_path , class: "navbar-brand" do %>
+    <%= link_to root_path, class: "navbar-brand" do %>
       <%= image_tag "https://i.pinimg.com/564x/78/b6/1f/78b61f5c7197d1f13a2848dde9628d56.jpg" %>
     <% end %>
 
@@ -17,19 +17,15 @@
           <li class="nav-item">
             <%= link_to "Mes PNJ", npc_index_path, class: "nav-link" %>
           </li>
-          <li class="nav-item dropdown">
-          <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= image_tag "avatar.png", class: "avatar", alt: "dropdown menu" %>
-          </a>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <% if current_user.type == "mj" %>
-              <%= link_to "Espace personel", mj_path, class: "dropdown-item" %>
-              <% else %>
-              <%= link_to "Espace personel", joueur_path, class: "dropdown-item" %>
-              <% end %>
-              <%= link_to "Another action", "#", class: "dropdown-item" %>
-              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
-            </div>
+          <li class="nav-item">
+            <% if current_user.type == "mj" %>
+              <%= link_to "Espace personnel", mj_path, class: "nav-link" %>
+            <% else %>
+              <%= link_to "Espace personnel", joueur_path, class: "nav-link" %>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-link" %>
           </li>
         <% else %>
           <li class="nav-item">
