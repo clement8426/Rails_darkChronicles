@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     get 'search', on: :collection
     get 'add_user', to: 'groups#add_user'
     post 'add_user_to_group', to: 'groups#add_user_to_group'
+    delete 'remove_user/:user_id', to: 'groups#remove_user', on: :member, as: :remove_user
   end
   get "mj", to: "pages#mj"
   get "joueur", to: "pages#joueur"

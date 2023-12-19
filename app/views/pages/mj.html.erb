@@ -5,11 +5,16 @@
     <h2>Créer un nouveau groupe</h2>
 
     <%= simple_form_for @group, url: groups_path, method: :post, class: 'form', data: { turbo_frame: 'your-frame-id' } do |f| %>
-      <div class="mb-3">
-        <%= f.input :name, class: 'form-control', placeholder: 'Saisissez le nom du groupe' %>
+      <div class="row mb-3">
+        <div class="col-md-8">
+          <%= f.input :name, class: 'form-control', placeholder: 'Saisissez le nom du groupe',  label: false %>
+        </div>
+        <div class="col-md-4">
+          <%= f.button :submit, 'Créer le groupe', class: 'btn btn-secondary' %>
+        </div>
       </div>
-      <%= f.button :submit, 'Créer le groupe', class: 'btn btn-secondary' %>
     <% end %>
   </div>
 
   <%= render "groups/index" %>
+</div>

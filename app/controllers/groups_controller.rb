@@ -7,6 +7,11 @@ class GroupsController < ApplicationController
   #     @users = User.where(type: "joueur")
   #   end
   # end
+  def show
+    @group = Group.find(params[:id])
+
+
+  end
 
   def new
     @group = Group.new
@@ -31,20 +36,18 @@ class GroupsController < ApplicationController
 
   def destroy
     @group = Group.find(params[:id])
+    @group.joueurs.each do |player|
+      player.group_id = nil
+      player.save(validate: false)
+    end
+
     @group.destroy
 
-    redirect_path = if @group.destroyed?
-                      groups_path
-                    else
-                      mj_path
-                    end
-
     respond_to do |format|
-      format.html { redirect_to redirect_path, notice: 'Group was successfully destroyed.' }
-      format.json { render json: @group, status: :created, location: @group }
+      format.html { redirect_to groups_path, notice: 'Groupe supprimé.' }
+      format.json { head :no_content }
     end
   end
-
 
   def add_user
     @group = Group.find(params[:id])
@@ -91,6 +94,19 @@ class GroupsController < ApplicationController
     end
   end
 
+  def remove_user
+    @group = Group.find(params[:id])
+    @user = User.find(params[:user_id])
+
+    if @group.joueurs.exists?(@user.id)
+      @group.joueurs.delete(@user)
+      flash[:notice] = "Joueur supprimé."
+    else
+      flash[:alert] = "Joueur non trouvé."
+    end
+
+    redirect_to mj_path
+  end
 
 
 

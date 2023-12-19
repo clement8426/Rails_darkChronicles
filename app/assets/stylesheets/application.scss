@@ -14,3 +14,21 @@
 body {
   background-color: #ededed;
 }
+.scroll-to-top {
+  display: none;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  background-color: #5c636b;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+@media (max-width: 600px) {
+  .scroll-to-top {
+    display: block;
+  }
+}

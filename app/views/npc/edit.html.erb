@@ -1,0 +1,7 @@
+<div class="container">
+  <h1>Modifier PNJ : <%= @npc.name %></h1>
+
+  <%= render 'form_edit', npc: @npc %>
+
+  <%= link_to 'Retour à la liste des NPCs', npc_index_path, class: 'btn btn-secondary mt-4' %>
+</div>

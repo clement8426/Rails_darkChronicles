@@ -10,10 +10,13 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-
-  <body><%= render "shared/navbar" %>
-  <%= render "shared/flashes" %>
+  <body>
+    <%= render "shared/navbar" %>
+    <%= render "shared/flashes" %>
 
     <%= yield %>
+    <%= link_to "#top" do %>
+      <button class="scroll-to-top" title="Go to top">&#9650;</button>
+    <% end %>
   </body>
 </html>
