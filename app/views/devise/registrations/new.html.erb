@@ -32,21 +32,21 @@
 
         <div class="form-group">
           <%= f.label :account_type %>
-          <%= f.select :account_type, User.account_types.keys.map { |type| [type.humanize, type] }, { include_blank: 'Select account type' }, class: 'form-control' %>
+          <%= f.select :account_type, User.account_types.keys.map { |type| [type.humanize, type] }, { include_blank: 'Vous êtes Joueur ou Mj' }, { required: true, class: 'form-control' } %>
         </div>
 
         <div class="form-group">
           <%= f.label :name %>
           <%= f.input :name,
                       required: true,
-                      input_html: { class: 'form-control' }, label: false %>
+                      input_html: { autocomplete: "name", class: 'form-control' }, label: false %>
         </div>
 
         <div class="form-group">
           <%= f.label :description %>
           <%= f.input :description,
                       required: true,
-                      input_html: { class: 'form-control' }, label: false %>
+                      input_html: { autocomplete: "description", class: 'form-control' }, label: false %>
         </div>
 
         <div class="form-group">

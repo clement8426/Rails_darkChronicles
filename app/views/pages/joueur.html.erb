@@ -4,29 +4,59 @@
       <h2><%= current_user.name %></h2>
       <p><%= current_user.description %></p>
 
-      <%= simple_form_for @sheet, url: sheets_path, remote: true, data: { turbo_method: :post} do |form| %>
+      <%= simple_form_for @sheet, url: sheets_path, remote: true, data: { turbo_method: :post } do |form| %>
         <%= form.input :title %>
         <%= form.input :pdf, as: :file %>
         <div class="actions">
-          <%= form.submit 'Add Sheet' %>
+          <%= form.submit 'Ajouter la fiche' %>
         </div>
       <% end %>
+
+      <div class="text-danger mt-4">
+        <strong>Modifier votre fiche de personnage actuelle :</strong>
+        Utilisez le PDF interactif pour apporter des modifications en temps réel. Notez que ces changements ne seront pas sauvegardés sur le site.
+      </div>
+
+      <div class="text-danger">
+        <strong>Télécharger la fiche modifiée :</strong>
+        Cliquez sur le bouton de téléchargement en haut à droite du PDF ("Avec vos modifications"). Le téléchargement débutera, et vous recevrez un fichier PDF contenant les modifications apportées.
+      </div>
+
+      <div class="text-danger">
+        <strong>Ajouter la nouvelle fiche modifiée :</strong>
+        Utilisez le formulaire d'ajout de fiches. Sélectionnez le fichier PDF téléchargé et ajoutez un nom pour identifier cette nouvelle version de votre fiche.
+      </div>
+
+      <div class="text-danger">
+        <strong>Afficher votre nouvelle fiche modifiée :</strong>
+        Une fois ajoutée, votre nouvelle fiche modifiée sera visible dans la liste des fiches de personnages.
+        Cliquez sur le titre de la fiche pour voir la version interactive avec les modifications.
+      </div>
     </div>
 
     <div class="col-md-8" id="sheet-details">
       <h3>Feuille(s) de personnage(s):</h3>
-      <% @sheets.each do |sheet| %>
-        <div id="sheet">
-          <h1><%= sheet.title %></h1>
-          <div>
-            <% if sheet.pdf.attached? %>
-              <iframe src="<%= rails_blob_path(sheet.pdf, disposition: 'inline') %>" width="100%" height="800px"></iframe>
-            <% else %>
-              <p>No PDF attached.</p>
-            <% end %>
 
-          <%= link_to 'Delete Sheet', sheet, method: :delete, remote: true, data: { turbo_method: :delete, turbo_frame: "sheet_#{sheet.id}" }, class: 'btn btn-danger' %>
+      <% if @sheets.present? %>
+        <% @sheets.each do |sheet| %>
+          <div id="sheet">
+            <h1><%= sheet.title %></h1>
+            <div>
+              <% if sheet.pdf.attached? %>
+                <iframe src="<%= rails_blob_path(sheet.pdf, disposition: 'inline') %>" width="100%" height="800px"></iframe>
+              <% else %>
+                <p>Aucun PDF attaché.</p>
+              <% end %>
+
+              <%= link_to 'Supprimer la fiche', sheet, method: :delete, remote: true, data: { turbo_method: :delete, turbo_frame: "sheet_#{sheet.id}" }, class: 'btn btn-danger' %>
+            </div>
           </div>
+        <% end %>
+      <% else %>
+        <!-- Afficher un PDF par défaut lorsqu'il n'y a pas de fiches -->
+        <div id="sheet">
+          <h1>Modèle de fiche de personnage à télécharger.</h1>
+          <iframe src="https://dark-chronicles.s3.eu-west-3.amazonaws.com/vampire.pdf" width="100%" height="800px"></iframe>
         </div>
       <% end %>
     </div>
