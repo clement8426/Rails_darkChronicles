@@ -29,13 +29,10 @@
                       input_html: { autocomplete: "new-password", class: 'form-control' }, label: false %>
         </div>
 
-        <div class="form-group">
-          <%= f.label :type %>
-          <%= f.input :type,
-                      collection: ['joueur', 'MJ'],
-                      required: true,
-                      input_html: { autocomplete: "new-password", class: 'form-control' }, label: false %>
-        </div>
+      <div class="form-group">
+        <%= f.label :account_type %>
+        <%= f.select :account_type, ['joueur', 'MJ'], { include_blank: 'Select account type' }, class: 'form-control' %>
+      </div>
 
         <div class="form-group">
           <%= f.label :name %>

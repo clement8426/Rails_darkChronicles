@@ -18,7 +18,7 @@
             <%= link_to "Mes PNJ", npc_index_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <% if current_user.type == "mj" %>
+            <% if current_user.account_type == "MJ" %>
               <%= link_to "Espace personnel", mj_path, class: "nav-link" %>
             <% else %>
               <%= link_to "Espace personnel", joueur_path, class: "nav-link" %>
