@@ -24,4 +24,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  # Add account_type as an attribute.
+  enum account_type: { joueur: 'Joueur', MJ: 'MJ' }
 end
