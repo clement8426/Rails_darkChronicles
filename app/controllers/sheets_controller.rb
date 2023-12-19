@@ -4,27 +4,34 @@ class SheetsController < ApplicationController
 
     @sheet = Sheet.new(sheet_params)
     @sheet.user = current_user
-    @sheet.pdf.attach(uploaded_file)  # Remove the 'service: :amazon' argument
+    @sheet.pdf.attach(uploaded_file)
 
-    if @sheet.save
-      redirect_to @sheet, notice: 'Sheet was successfully created.'
-    else
-      render :new
-    end
-  end
-  def show
-    @sheet = Sheet.find(params[:id])
     respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @sheet }
+      if @sheet.save
+        format.html { redirect_to sheets_url }
+        format.json { head :no_content }
+      else
+        format.html { render :new }
+        format.json { render json: @sheet.errors, status: :unprocessable_entity }
+      end
     end
   end
 
 
   def destroy
-    @sheet = Sheet.find(params[:id])
-    @sheet.destroy
+    @sheet = current_user.sheets.find(params[:id])
+
+    respond_to do |format|
+      if @sheet.destroy
+        format.html { redirect_to sheets_url }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to sheets_url, alert: 'Error destroying the sheet.' }
+        format.json { render json: @sheet.errors, status: :unprocessable_entity }
+      end
+    end
   end
+
 
   private
 

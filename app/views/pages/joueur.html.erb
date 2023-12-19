@@ -4,7 +4,7 @@
       <h2><%= current_user.name %></h2>
       <p><%= current_user.description %></p>
 
-      <%= simple_form_for @sheet, url: sheets_path, html: { multipart: true }, remote: true do |form| %>
+      <%= simple_form_for @sheet, url: sheets_path, remote: true, data: { turbo_method: :post} do |form| %>
         <%= form.input :title %>
         <%= form.input :pdf, as: :file %>
         <div class="actions">
