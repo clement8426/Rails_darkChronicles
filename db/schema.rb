@@ -42,15 +42,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_19_132128) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "group_memberships", force: :cascade do |t|
-    t.bigint "joueur_id", null: false
-    t.bigint "group_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["group_id"], name: "index_group_memberships_on_group_id"
-    t.index ["joueur_id"], name: "index_group_memberships_on_joueur_id"
-  end
-
   create_table "groups", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
@@ -103,8 +94,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_19_132128) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "group_memberships", "groups"
-  add_foreign_key "group_memberships", "users", column: "joueur_id"
   add_foreign_key "groups", "users"
   add_foreign_key "npcs", "users"
   add_foreign_key "sheets", "users"

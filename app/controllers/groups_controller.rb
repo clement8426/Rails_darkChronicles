@@ -1,10 +1,10 @@
 class GroupsController < ApplicationController
   # def index
   #   if params[:query].present? && params[:query][:query].present?
-  #     @users = User.where(type: "joueur").search_by_name(params[:query][:query])
+  #     @users = User.where(account_type: "joueur").search_by_name(params[:query][:query])
 
   #   else
-  #     @users = User.where(type: "joueur")
+  #     @users = User.where(account_type: "joueur")
   #   end
   # end
   def show
@@ -53,9 +53,9 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
 
     if params[:query].present? && params[:query][:query].present?
-      @users = User.where(type: "joueur").search_by_name(params[:query][:query])
+      @users = User.where(account_type: "Joueur").search_by_name(params[:query][:query])
     else
-      @users = User.where(type: "joueur")
+      @users = User.where(account_type: "Joueur")
     end
 
     if params[:user_id].present?

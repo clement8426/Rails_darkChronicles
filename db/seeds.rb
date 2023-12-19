@@ -7,7 +7,7 @@ Npc.destroy_all
 mj_user = User.create!(
   email: 'mj@example.com',
   password: 'password',
-  type: 'MJ',
+  account_type: 'MJ',
   name: 'MJ Name',
   description: 'Description of MJ',
   latitude: 48.8566,  # Latitude for Paris
@@ -17,7 +17,7 @@ mj_user = User.create!(
 player1 = User.create!(
   email: 'player1@example.com',
   password: 'password',
-  type: 'joueur',
+  account_type: 'Joueur',
   name: 'Player 1',
   latitude: 48.8566,  # Latitude for Paris
   longitude: 2.3522   # Longitude for Paris
@@ -26,7 +26,7 @@ player1 = User.create!(
 player2 = User.create!(
   email: 'player2@example.com',
   password: 'password',
-  type: 'joueur',
+  account_type: 'Joueur',
   name: 'Player 2',
   latitude: 48.8566,  # Latitude for Paris
   longitude: 2.3522   # Longitude for Paris
