@@ -7,7 +7,7 @@ Npc.destroy_all
 mj_user = User.create!(
   email: 'mj@example.com',
   password: 'password',
-  type: 'mj',
+  type: 'MJ',
   name: 'MJ Name',
   description: 'Description of MJ',
   latitude: 48.8566,  # Latitude for Paris

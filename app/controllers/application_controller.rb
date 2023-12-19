@@ -14,4 +14,6 @@ class ApplicationController < ActionController::Base
   def find_or_build_user_sheet
     @sheet = Sheet.find_or_initialize_by(user_id: current_user.id)
   end
+
+
 end
