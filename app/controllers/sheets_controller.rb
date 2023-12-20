@@ -1,4 +1,6 @@
 class SheetsController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     uploaded_file = params[:sheet][:pdf]
 

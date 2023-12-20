@@ -1,5 +1,8 @@
 class NpcController < ApplicationController
+  before_action :authenticate_user!
+
   # Other actions...
+  before_action :authenticate_user!
 
   def index
     @npcs = Npc.where(user_id: current_user.id)

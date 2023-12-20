@@ -1,4 +1,6 @@
 class GroupsController < ApplicationController
+  before_action :authenticate_user!
+
   # def index
   #   if params[:query].present? && params[:query][:query].present?
   #     @users = User.where(account_type: "joueur").search_by_name(params[:query][:query])
