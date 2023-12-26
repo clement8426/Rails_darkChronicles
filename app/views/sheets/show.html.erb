@@ -1,0 +1,85 @@
+<div class="container mt-4">
+  <!-- Sheet Title -->
+  <h1 class="text-center"><%= @sheet.title %></h1>
+
+  <!-- First Row: Nom, Joueur, Chronique -->
+  <div class="row mt-4">
+    <div class="col">
+      <strong>Nom:</strong> <%= @sheet.Nom %>
+    </div>
+    <div class="col">
+      <strong>Joueur:</strong> <%= @sheet.Joueur %>
+    </div>
+    <div class="col">
+      <strong>Chronique:</strong> <%= @sheet.Chronique %>
+    </div>
+  </div>
+
+  <!-- Second Row: Nature, Attitude, Concept -->
+  <div class="row mt-4">
+    <div class="col">
+      <strong>Nature:</strong> <%= @sheet.Nature %>
+    </div>
+    <div class="col">
+      <strong>Attitude:</strong> <%= @sheet.Attitude %>
+    </div>
+    <div class="col">
+      <strong>Concept:</strong> <%= @sheet.Concept %>
+    </div>
+  </div>
+
+  <!-- Third Row: Clan, Génération, Refuge -->
+  <div class="row mt-4">
+    <div class="col">
+      <strong>Clan:</strong> <%= @sheet.Clan %>
+    </div>
+    <div class="col">
+      <strong>Génération:</strong> <%= @sheet.Génération %>
+    </div>
+    <div class="col">
+      <strong>Refuge:</strong> <%= @sheet.Refuge %>
+    </div>
+  </div>
+
+  <!-- Fourth Row: Physical Attributes -->
+  <div class="row mt-4">
+    <div class="col">
+      <strong>Force:</strong> <%= @sheet.Force %>
+    </div>
+    <div class="col">
+      <strong>Dextérité:</strong> <%= @sheet.Dextérité %>
+    </div>
+    <div class="col">
+      <strong>Vigueur:</strong> <%= @sheet.Vigueur %>
+    </div>
+  </div>
+
+  <!-- Fifth Row: Social Attributes -->
+  <div class="row mt-4">
+    <div class="col">
+      <strong>Charisme:</strong> <%= @sheet.Charisme %>
+    </div>
+    <div class="col">
+      <strong>Manipulation:</strong> <%= @sheet.Manipulation %>
+    </div>
+    <div class="col">
+      <strong>Apparence:</strong> <%= @sheet.Apparence %>
+    </div>
+  </div>
+
+  <!-- Sixth Row: Mental Attributes -->
+  <div class="row mt-4">
+    <div class="col">
+      <strong>Perception:</strong> <%= @sheet.Perception %>
+    </div>
+    <div class="col">
+      <strong>Intelligence:</strong> <%= @sheet.Intelligence %>
+    </div>
+    <div class="col">
+      <strong>Astuce:</strong> <%= @sheet.Astuce %>
+    </div>
+  </div>
+
+  <!-- Add more rows for other attributes as needed -->
+
+</div>

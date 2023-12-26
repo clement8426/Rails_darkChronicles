@@ -32,3 +32,14 @@ body {
     display: block;
   }
 }
+
+.sheet {
+  .mb-3 {
+    justify-content: space-between;
+    display: flex;
+  }
+
+  .form-control {
+    width: 30%;
+  }
+}

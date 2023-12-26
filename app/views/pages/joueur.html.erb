@@ -3,6 +3,8 @@
     <div class="col-md-4" data-controller="sheet">
       <h2><%= current_user.name %></h2>
       <p><%= current_user.description %></p>
+      <%= link_to 'Creer ma fiche', new_sheet_path, class: 'btn btn-secondary' %>
+
 
       <%= simple_form_for @sheet, url: sheets_path, remote: true, data: { turbo_method: :post } do |form| %>
         <%= form.input :title %>
