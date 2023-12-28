@@ -1,0 +1,51 @@
+.sheet {
+  h1 {
+    margin-bottom: 50px;
+  }
+
+  .mb-3 {
+    justify-content: space-between;
+    display: flex;
+  }
+
+  .form-control {
+    width: 30%;
+  }
+}
+
+.voie {
+  .form-group {
+    display: flex;
+    justify-content: space-between;
+  }
+  .form-control {
+    margin: 5px;
+    width: 100%;
+  }
+}
+.disciplines {
+  .form-group {
+    display: flex;
+    justify-content: space-between;
+  }
+  .form-control {
+    margin: 5px;
+    width: 50%;
+  }
+}
+
+.atouts {
+  .form-group {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .form-group .form-control {
+    margin: 5px;
+    width: calc(50% - 10px);
+  }
+
+  .form-group .form-control:last-child {
+    width: 100%;
+  }
+}
