@@ -11,6 +11,23 @@
   .form-control {
     width: 30%;
   }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    strong {
+      display: flex;
+      justify-content: space-between;
+      margin-right: 8px;
+    }
+  }
 }
 
 .voie {
@@ -48,4 +65,37 @@
   .form-group .form-control:last-child {
     width: 100%;
   }
+
+  ul {
+    li {
+      justify-content: space-evenly;
+    }
+  }
+}
+
+.capacity {
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    strong {
+      display: flex;
+      justify-content: space-between;
+      margin-right: 8px;
+    }
+  }
+}
+
+.hidden-sheet {
+  display: none;
+}
+
+.hidden-sheet.show-details {
+  display: block;
 }

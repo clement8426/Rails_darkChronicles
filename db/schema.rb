@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_28_122632) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_04_163730) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,14 +42,14 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_28_122632) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "advantage_disadvantages", force: :cascade do |t|
+  create_table "advantages", force: :cascade do |t|
     t.string "name"
     t.integer "value"
     t.bigint "sheet_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "description"
-    t.index ["sheet_id"], name: "index_advantage_disadvantages_on_sheet_id"
+    t.index ["sheet_id"], name: "index_advantages_on_sheet_id"
   end
 
   create_table "backgrounds", force: :cascade do |t|
@@ -59,6 +59,16 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_28_122632) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["sheet_id"], name: "index_backgrounds_on_sheet_id"
+  end
+
+  create_table "disadvantages", force: :cascade do |t|
+    t.string "name"
+    t.integer "value"
+    t.bigint "sheet_id", null: false
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sheet_id"], name: "index_disadvantages_on_sheet_id"
   end
 
   create_table "disciplines", force: :cascade do |t|
@@ -183,14 +193,25 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_28_122632) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "voie_thaumaturgiques", force: :cascade do |t|
+    t.string "name"
+    t.integer "value"
+    t.bigint "sheet_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sheet_id"], name: "index_voie_thaumaturgiques_on_sheet_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "advantage_disadvantages", "sheets"
+  add_foreign_key "advantages", "sheets"
   add_foreign_key "backgrounds", "sheets"
+  add_foreign_key "disadvantages", "sheets"
   add_foreign_key "disciplines", "sheets"
   add_foreign_key "groups", "users"
   add_foreign_key "npcs", "users"
   add_foreign_key "paths", "sheets"
   add_foreign_key "sheets", "users"
   add_foreign_key "users", "groups"
+  add_foreign_key "voie_thaumaturgiques", "sheets"
 end

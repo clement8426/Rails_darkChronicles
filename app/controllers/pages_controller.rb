@@ -20,4 +20,9 @@ class PagesController < ApplicationController
     @group = Group.new
 
   end
+
+  def joueur
+    @sheets = current_user.sheets
+
+  end
 end

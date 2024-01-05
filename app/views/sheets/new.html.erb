@@ -30,21 +30,21 @@
       <h1 class="text-center">Attributs</h1>
       <div class="col">
         <h2 class="text-center"> Physique</h2>
-        <%= f.input :Force %>
-        <%= f.input :Dextérité %>
-        <%= f.input :Vigueur %>
+        <%= f.input :Force, input_html: { value: 1 } %>
+        <%= f.input :Dextérité, input_html: { value: 1 } %>
+        <%= f.input :Vigueur, input_html: { value: 1 } %>
       </div>
       <div class="col">
         <h2 class="text-center">Social</h2>
-        <%= f.input :Charisme %>
-        <%= f.input :Manipulation %>
-        <%= f.input :Apparence %>
+        <%= f.input :Charisme, input_html: { value: 1 } %>
+        <%= f.input :Manipulation, input_html: { value: 1 } %>
+        <%= f.input :Apparence, input_html: { value: 1 } %>
       </div>
       <div class="col">
         <h2 class="text-center">Mental</h2>
-        <%= f.input :Perception %>
-        <%= f.input :Intelligence %>
-        <%= f.input :Astuce %>
+        <%= f.input :Perception, input_html: { value: 1 } %>
+        <%= f.input :Intelligence, input_html: { value: 1 } %>
+        <%= f.input :Astuce, input_html: { value: 1 } %>
       </div>
     </div>
 
@@ -52,132 +52,141 @@
       <h1 class="text-center">Capacités</h1>
       <div class="col">
         <h2 class="text-center">Talents</h2>
-        <%= f.input :Expression %>
-        <%= f.input :Vigilances %>
-        <%= f.input :Athlétisme %>
-        <%= f.input :Bagarre %>
-        <%= f.input :Esquive %>
-        <%= f.input :Empathie %>
-        <%= f.input :Intimidation %>
-        <%= f.input :Passe %>
-        <%= f.input :Commandement %>
-        <%= f.input :Subterfuge %>
+        <%= f.input :Expression, input_html: { value: 0 } %>
+        <%= f.input :Vigilances, input_html: { value: 0 } %>
+        <%= f.input :Athlétisme, input_html: { value: 0 } %>
+        <%= f.input :Bagarre, input_html: { value: 0 } %>
+        <%= f.input :Esquive, input_html: { value: 0 } %>
+        <%= f.input :Empathie, input_html: { value: 0 } %>
+        <%= f.input :Intimidation, input_html: { value: 0 } %>
+        <%= f.input :Passe, input_html: { value: 0 } %>
+        <%= f.input :Commandement, input_html: { value: 0 } %>
+        <%= f.input :Subterfuge, input_html: { value: 0 } %>
       </div>
       <div class="col">
         <h2 class="text-center">Compétences</h2>
-        <%= f.input :Animaux %>
-        <%= f.input :Archerie %>
-        <%= f.input :Artisanats %>
-        <%= f.input :Equitation %>
-        <%= f.input :Etiquette %>
-        <%= f.input :Furtivité %>
-        <%= f.input :Commerce %>
-        <%= f.input :Mêlée %>
-        <%= f.input :Représentation %>
-        <%= f.input :Survie %>
+        <%= f.input :Animaux, input_html: { value: 0 } %>
+        <%= f.input :Archerie, input_html: { value: 0 } %>
+        <%= f.input :Artisanats, input_html: { value: 0 } %>
+        <%= f.input :Equitation, input_html: { value: 0 } %>
+        <%= f.input :Etiquette, input_html: { value: 0 } %>
+        <%= f.input :Furtivité, input_html: { value: 0 } %>
+        <%= f.input :Commerce, input_html: { value: 0 } %>
+        <%= f.input :Mêlée, input_html: { value: 0 } %>
+        <%= f.input :Représentation, input_html: { value: 0 } %>
+        <%= f.input :Survie, input_html: { value: 0 } %>
       </div>
       <div class="col">
         <h2 class="text-center">Connaissances</h2>
-        <%= f.input :Erudition %>
-        <%= f.input :Investigation %>
-        <%= f.input :Droit %>
-        <%= f.input :Linguistique %>
-        <%= f.input :Médecine %>
-        <%= f.input :Occulte %>
-        <%= f.input :Sagesse %>
-        <%= f.input :Politique %>
-        <%= f.input :Sénéchal %>
-        <%= f.input :Théologie %>
+        <%= f.input :Erudition, input_html: { value: 0 } %>
+        <%= f.input :Investigation, input_html: { value: 0 } %>
+        <%= f.input :Droit, input_html: { value: 0 } %>
+        <%= f.input :Linguistique, input_html: { value: 0 } %>
+        <%= f.input :Médecine, input_html: { value: 0 } %>
+        <%= f.input :Occulte, input_html: { value: 0 } %>
+        <%= f.input :Sagesse, input_html: { value: 0 } %>
+        <%= f.input :Politique, input_html: { value: 0 } %>
+        <%= f.input :Sénéchal, input_html: { value: 0 } %>
+        <%= f.input :Théologie, input_html: { value: 0 } %>
       </div>
     </div>
+
 
     <div class="row mt-4">
       <div class="col">
         <h2 class="text-center">Volonté</h2>
-        <%= f.input :Volonté %>
+        <%= f.input :Volonté, input_html: { value: 0 } %>
       </div>
       <div class="col">
         <h2 class="text-center">Vertus</h2>
-        <%= f.input :Consciences %>
-        <%= f.input :Maitrise %>
-        <%= f.input :Courage %>
+        <%= f.input :Consciences, input_html: { value: 0 } %>
+        <%= f.input :Maitrise, input_html: { value: 0 } %>
+        <%= f.input :Courage, input_html: { value: 0 } %>
       </div>
       <div class="col voie">
         <h2 class="text-center">Voie</h2>
-        <%= f.fields_for :path_attributes do |path_fields| %>
+        <%= f.fields_for :path_attributes, OpenStruct.new do |path_fields| %>
           <div class="form-group">
-            <%= path_fields.text_field :name, placeholder: "Path Name", class: "form-control" %>
-            <%= path_fields.number_field :value, placeholder: "Path Value", class: "form-control" %>
+            <%= path_fields.text_field :name, placeholder: "Nom", class: "form-control" %>
+            <%= path_fields.number_field :value, value: 0, class: "form-control" %>
           </div>
         <% end %>
       </div>
     </div>
 
     <div class="row mt-4 disciplines">
-      <h1 class="text-center">Capacités</h1>
-
       <!-- Historiques -->
-      <div class="col">
-        <h2 class="text-center">Historiques</h2>
-        <% (1..10).each do |index| %>
-          <div class="form-group">
-            <%= f.fields_for "backgrounds_attributes[]", OpenStruct.new(id: index) do |background_fields| %>
-              <%= background_fields.text_field :name, placeholder: "Background Name", class: "form-control" %>
-              <%= background_fields.text_field :value, placeholder: "Background Value", class: "form-control" %>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
+    <div class="col">
+      <h2 class="text-center">Historiques</h2>
+      <% (1..10).each do |index| %>
+        <div class="form-group">
+          <%= f.fields_for "backgrounds_attributes[]", OpenStruct.new(id: index) do |background_fields| %>
+            <%= background_fields.text_field :name, placeholder: "Nom", class: "form-control" %>
+            <%= background_fields.number_field :value, value: 0, class: "form-control" %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
 
-      <!-- Disciplines -->
-      <div class="col">
-        <h2 class="text-center">Disciplines</h2>
-        <% (1..10).each do |index| %>
-          <div class="form-group">
-            <%= f.fields_for "disciplines_attributes[]", OpenStruct.new(id: index) do |discipline_fields| %>
-              <%= discipline_fields.text_field :name, placeholder: "Discipline Name", class: "form-control" %>
-              <%= discipline_fields.text_field :value, placeholder: "Discipline Value", class: "form-control" %>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-      <div class="col">
-        <h2 class="text-center">en construction</h2>
-      </div>
+    <!-- Disciplines -->
+    <div class="col">
+      <h2 class="text-center">Disciplines</h2>
+      <% (1..10).each do |index| %>
+        <div class="form-group">
+          <%= f.fields_for "disciplines_attributes[]", OpenStruct.new(id: index) do |discipline_fields| %>
+            <%= discipline_fields.text_field :name, placeholder: "Nom", class: "form-control" %>
+            <%= discipline_fields.number_field :value, value: 0, class: "form-control" %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="col">
+      <h2 class="text-center">Thaumaturgies</h2>
+      <% (1..10).each do |index| %>
+        <div class="form-group">
+          <%= f.fields_for "voie_thaumaturgiques_attributes[]", OpenStruct.new(id: index) do |voie_fields| %>
+            <%= voie_fields.text_field :name, placeholder: "Nom", class: "form-control" %>
+            <%= voie_fields.number_field :value, value: 0, class: "form-control" %>
+          <% end %>
+        </div>
+      <% end %>
     </div>
 
 
-    <div class="row mt-4 atouts">
-      <h1 class="text-center">Atouts, Handicaps</h1>
 
-      <!-- Advantages -->
-      <div class="col">
-        <h2 class="text-center">Atouts</h2>
-        <% (1..10).each do |index| %>
-          <div class="form-group">
-            <%= f.fields_for "advantages_attributes[]", OpenStruct.new(id: index) do |advantage_fields| %>
-              <%= advantage_fields.text_field :name, placeholder: "Advantage Name", class: "form-control" %>
-              <%= advantage_fields.number_field :value, placeholder: "Advantage Value", class: "form-control" %>
-              <%= advantage_fields.text_field :description, placeholder: "Advantage Description", class: "form-control" %>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
+  <div class="row mt-4 atouts">
+    <h1 class="text-center">Atouts, Handicaps</h1>
 
-      <!-- Disadvantages -->
-      <div class="col">
-        <h2 class="text-center">Handicaps</h2>
-        <% (1..10).each do |index| %>
-          <div class="form-group">
-            <%= f.fields_for "disadvantages_attributes[]", OpenStruct.new(id: index) do |disadvantage_fields| %>
-              <%= disadvantage_fields.text_field :name, placeholder: "Disadvantage Name", class: "form-control" %>
-              <%= disadvantage_fields.number_field :value, placeholder: "Disadvantage Value", class: "form-control" %>
-              <%= disadvantage_fields.text_field :description, placeholder: "Disadvantage Description", class: "form-control" %>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
+    <!-- Avantages -->
+    <div class="col">
+      <h2 class="text-center">Atouts</h2>
+      <% (1..10).each do |index| %>
+        <div class="form-group">
+          <%= f.fields_for "advantages_attributes[]", OpenStruct.new(id: index) do |avantage_fields| %>
+            <%= avantage_fields.text_field :name, placeholder: "Nom de l'atout", class: "form-control" %>
+            <%= avantage_fields.number_field :value, value: 0, class: "form-control" %>
+            <%= avantage_fields.text_field :description, placeholder: "Description de l'atout", class: "form-control" %>
+          <% end %>
+        </div>
+      <% end %>
     </div>
+
+    <!-- Handicaps -->
+    <div class="col">
+      <h2 class="text-center">Handicaps</h2>
+      <% (1..10).each do |index| %>
+        <div class="form-group">
+          <%= f.fields_for "disadvantages_attributes[]", OpenStruct.new(id: index) do |handicap_fields| %>
+            <%= handicap_fields.text_field :name, placeholder: "Nom du handicap", class: "form-control" %>
+            <%= handicap_fields.number_field :value, value: 0, class: "form-control" %>
+            <%= handicap_fields.text_field :description, placeholder: "Description du handicap", class: "form-control" %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
 
 
 
