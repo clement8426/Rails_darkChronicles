@@ -1,0 +1,198 @@
+<!-- app/views/sheets/edit.html.erb -->
+
+<div class="container mt-4 sheet">
+  <h1 class="text-center">Modifier la Fiche</h1>
+
+  <%= simple_form_for(@sheet, html: { class: 'form-inline' }) do |f| %>
+
+    <!-- General Information -->
+    <div class="row">
+      <div class="col">
+        <%= f.input :Nom %>
+        <%= f.input :Joueur %>
+        <%= f.input :Chronique %>
+      </div>
+      <div class="col">
+        <%= f.input :Nature %>
+        <%= f.input :Attitude %>
+        <%= f.input :Concept %>
+      </div>
+      <div class="col">
+        <%= f.input :Clan %>
+        <%= f.input :Génération %>
+        <%= f.input :Refuge %>
+      </div>
+    </div>
+
+    <!-- Fourth Row: Physical Attributes -->
+    <div class="row mt-4">
+      <h1 class="text-center">Attributs</h1>
+      <div class="col">
+        <h2 class="text-center"> Physique</h2>
+        <%= f.input :Force %>
+        <%= f.input :Dextérité %>
+        <%= f.input :Vigueur %>
+      </div>
+      <div class="col">
+        <h2 class="text-center">Social</h2>
+        <%= f.input :Charisme %>
+        <%= f.input :Manipulation %>
+        <%= f.input :Apparence %>
+      </div>
+      <div class="col">
+        <h2 class="text-center">Mental</h2>
+        <%= f.input :Perception %>
+        <%= f.input :Intelligence %>
+        <%= f.input :Astuce %>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <h1 class="text-center">Capacités</h1>
+      <div class="col">
+        <h2 class="text-center">Talents</h2>
+        <%= f.input :Expression %>
+        <%= f.input :Vigilances %>
+        <%= f.input :Athlétisme %>
+        <%= f.input :Bagarre %>
+        <%= f.input :Esquive %>
+        <%= f.input :Empathie %>
+        <%= f.input :Intimidation %>
+        <%= f.input :Passe %>
+        <%= f.input :Commandement %>
+        <%= f.input :Subterfuge %>
+      </div>
+      <div class="col">
+        <h2 class="text-center">Compétences</h2>
+        <%= f.input :Animaux %>
+        <%= f.input :Archerie %>
+        <%= f.input :Artisanats %>
+        <%= f.input :Equitation %>
+        <%= f.input :Etiquette %>
+        <%= f.input :Furtivité %>
+        <%= f.input :Commerce %>
+        <%= f.input :Mêlée %>
+        <%= f.input :Représentation %>
+        <%= f.input :Survie %>
+      </div>
+      <div class="col">
+        <h2 class="text-center">Connaissances</h2>
+        <%= f.input :Erudition %>
+        <%= f.input :Investigation %>
+        <%= f.input :Droit %>
+        <%= f.input :Linguistique %>
+        <%= f.input :Médecine %>
+        <%= f.input :Occulte %>
+        <%= f.input :Sagesse %>
+        <%= f.input :Politique %>
+        <%= f.input :Sénéchal %>
+        <%= f.input :Théologie %>
+      </div>
+    </div>
+
+
+    <div class="row mt-4">
+      <div class="col">
+        <h2 class="text-center">Volonté</h2>
+        <%= f.input :Volonté %>
+      </div>
+      <div class="col">
+        <h2 class="text-center">Vertus</h2>
+        <%= f.input :Consciences %>
+        <%= f.input :Maitrise %>
+        <%= f.input :Courage %>
+      </div>
+      <div class="col voie">
+        <h2 class="text-center">Voie</h2>
+        <%= f.fields_for :path_attributes, OpenStruct.new do |path_fields| %>
+          <div class="form-group">
+            <%= path_fields.text_field :name, placeholder: "Nom", class: "form-control" %>
+            <%= path_fields.number_field :value, class: "form-control" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row mt-4 disciplines">
+      <!-- Historiques -->
+    <div class="col">
+      <h2 class="text-center">Historiques</h2>
+      <% (1..10).each do |index| %>
+        <div class="form-group">
+          <%= f.fields_for "backgrounds_attributes[]", OpenStruct.new(id: index) do |background_fields| %>
+            <%= background_fields.text_field :name, placeholder: "Nom", class: "form-control" %>
+            <%= background_fields.number_field :value, class: "form-control" %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- Disciplines -->
+    <div class="col">
+      <h2 class="text-center">Disciplines</h2>
+      <% (1..10).each do |index| %>
+        <div class="form-group">
+          <%= f.fields_for "disciplines_attributes[]", OpenStruct.new(id: index) do |discipline_fields| %>
+            <%= discipline_fields.text_field :name, placeholder: "Nom", class: "form-control" %>
+            <%= discipline_fields.number_field :value, class: "form-control" %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="col">
+      <h2 class="text-center">Thaumaturgies</h2>
+      <% (1..10).each do |index| %>
+        <div class="form-group">
+          <%= f.fields_for "voie_thaumaturgiques_attributes[]", OpenStruct.new(id: index) do |voie_fields| %>
+            <%= voie_fields.text_field :name, placeholder: "Nom", class: "form-control" %>
+            <%= voie_fields.number_field :value, class: "form-control" %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+
+
+  <div class="row mt-4 atouts">
+    <h1 class="text-center">Atouts, Handicaps</h1>
+
+    <!-- Avantages -->
+    <div class="col">
+      <h2 class="text-center">Atouts</h2>
+      <% (1..10).each do |index| %>
+        <div class="form-group">
+          <%= f.fields_for "advantages_attributes[]", OpenStruct.new(id: index) do |avantage_fields| %>
+            <%= avantage_fields.text_field :name, placeholder: "Nom de l'atout", class: "form-control" %>
+            <%= avantage_fields.number_field :value, class: "form-control" %>
+            <%= avantage_fields.text_field :description, placeholder: "Description de l'atout", class: "form-control" %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- Handicaps -->
+    <div class="col">
+      <h2 class="text-center">Handicaps</h2>
+      <% (1..10).each do |index| %>
+        <div class="form-group">
+          <%= f.fields_for "disadvantages_attributes[]", OpenStruct.new(id: index) do |handicap_fields| %>
+            <%= handicap_fields.text_field :name, placeholder: "Nom du handicap", class: "form-control" %>
+            <%= handicap_fields.number_field :value, class: "form-control" %>
+            <%= handicap_fields.text_field :description, placeholder: "Description du handicap", class: "form-control" %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+
+    <!-- Submit Button -->
+    <div class="row mt-4">
+      <div class="col text-center">
+        <%= f.button :submit, class: "btn btn-secondary" %>
+      </div>
+    </div>
+
+  <% end %>
+</div>

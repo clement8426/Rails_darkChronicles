@@ -1,0 +1,101 @@
+.sheet {
+  h1 {
+    margin-bottom: 50px;
+  }
+
+  .mb-3 {
+    justify-content: space-between;
+    display: flex;
+  }
+
+  .form-control {
+    width: 30%;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    strong {
+      display: flex;
+      justify-content: space-between;
+      margin-right: 8px;
+    }
+  }
+}
+
+.voie {
+  .form-group {
+    display: flex;
+    justify-content: space-between;
+  }
+  .form-control {
+    margin: 5px;
+    width: 100%;
+  }
+}
+.disciplines {
+  .form-group {
+    display: flex;
+    justify-content: space-between;
+  }
+  .form-control {
+    margin: 5px;
+    width: 50%;
+  }
+}
+
+.atouts {
+  .form-group {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .form-group .form-control {
+    margin: 5px;
+    width: calc(50% - 10px);
+  }
+
+  .form-group .form-control:last-child {
+    width: 100%;
+  }
+
+  ul {
+    li {
+      justify-content: space-evenly;
+    }
+  }
+}
+
+.capacity {
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    strong {
+      display: flex;
+      justify-content: space-between;
+      margin-right: 8px;
+    }
+  }
+}
+
+.hidden-sheet {
+  display: none;
+}
+
+.hidden-sheet.show-details {
+  display: block;
+}

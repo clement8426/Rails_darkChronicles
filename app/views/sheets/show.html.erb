@@ -1,0 +1,14 @@
+<!-- app/views/sheets/show.html.erb -->
+
+<div class="container mt-4 sheet">
+  <h1 class="text-center">Détails de la Fiche</h1>
+
+          <%= render "shared/sheet", sheet: @sheet %>
+
+  <!-- Submit Button -->
+  <div class="row mt-4">
+    <div class="col text-center">
+      <%= link_to "Retour à la liste des fiches", joueur_path, class: "btn btn-secondary" %>
+    </div>
+  </div>
+</div>

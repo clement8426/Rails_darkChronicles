@@ -3,62 +3,249 @@
     <div class="col-md-4" data-controller="sheet">
       <h2><%= current_user.name %></h2>
       <p><%= current_user.description %></p>
-
-      <%= simple_form_for @sheet, url: sheets_path, remote: true, data: { turbo_method: :post } do |form| %>
-        <%= form.input :title %>
-        <%= form.input :pdf, as: :file %>
-        <div class="actions">
-          <%= form.submit 'Ajouter la fiche' %>
-        </div>
-      <% end %>
-
-      <div class="text-danger mt-4">
-        <strong>Modifier votre fiche de personnage actuelle :</strong>
-        Utilisez le PDF interactif pour apporter des modifications en temps réel. Notez que ces changements ne seront pas sauvegardés sur le site.
-      </div>
-
-      <div class="text-danger">
-        <strong>Télécharger la fiche modifiée :</strong>
-        Cliquez sur le bouton de téléchargement en haut à droite du PDF ("Avec vos modifications"). Le téléchargement débutera, et vous recevrez un fichier PDF contenant les modifications apportées.
-      </div>
-
-      <div class="text-danger">
-        <strong>Ajouter la nouvelle fiche modifiée :</strong>
-        Utilisez le formulaire d'ajout de fiches. Sélectionnez le fichier PDF téléchargé et ajoutez un nom pour identifier cette nouvelle version de votre fiche.
-      </div>
-
-      <div class="text-danger">
-        <strong>Afficher votre nouvelle fiche modifiée :</strong>
-        Une fois ajoutée, votre nouvelle fiche modifiée sera visible dans la liste des fiches de personnages.
-        Cliquez sur le titre de la fiche pour voir la version interactive avec les modifications.
-      </div>
+      <%= link_to 'Créer ma fiche', new_sheet_path, class: 'btn btn-secondary mb-3' %>
+      <h3 class="text-center">Fiche de personnage à télécharger :</h3>
+      <%= link_to 'Télécharger le modèle de fiche', 'https://dark-chronicles.s3.eu-west-3.amazonaws.com/vampire.pdf', class: 'btn btn-secondary btn-download', download: 'vampire.pdf' %>
     </div>
 
     <div class="col-md-8" id="sheet-details">
       <h3>Feuille(s) de personnage(s):</h3>
 
-      <% if @sheets.present? %>
-        <% @sheets.each do |sheet| %>
-          <div id="sheet">
-            <h1><%= sheet.title %></h1>
-            <div>
-              <% if sheet.pdf.attached? %>
-                <iframe src="<%= rails_blob_path(sheet.pdf, disposition: 'inline') %>" width="90%" height="800px"></iframe>
-              <% else %>
-                <p>Aucun PDF attaché.</p>
-              <% end %>
+    <% @sheets.each do |sheet| %>
+      <div class="container mt-4 sheet">
+        <div class="text-center">
+          <h1><%= sheet.Nom.presence || "pas de nom" %></h1>
+          <button class="btn btn-secondary toggle-details">Afficher ou Cacher la Fiche</button>
+        </div>
 
-              <%= link_to 'Supprimer la fiche', sheet, method: :delete, remote: true, data: { turbo_method: :delete, turbo_frame: "sheet_#{sheet.id}" }, class: 'btn btn-danger' %>
+
+        <div class="hidden-sheet">
+          <div class="container mt-4 sheet">
+            <!-- General Information -->
+              <div class="row">
+                <div class="col">
+                  <ul>
+                    <li><strong>Nom:</strong> <%= sheet.Nom %></li>
+                    <li><strong>Joueur:</strong> <%= sheet.Joueur %></li>
+                    <li><strong>Chronique:</strong> <%= sheet.Chronique %></li>
+                  </ul>
+                </div>
+                <div class="col">
+                  <ul>
+                    <li><strong>Nature:</strong> <%= sheet.Nature %></li>
+                    <li><strong>Attitude:</strong> <%= sheet.Attitude %></li>
+                    <li><strong>Concept:</strong> <%= sheet.Concept %></li>
+                  </ul>
+                </div>
+                <div class="col">
+                  <ul>
+                    <li><strong>Clan:</strong> <%= sheet.Clan %></li>
+                    <li><strong>Génération:</strong> <%= sheet.Génération %></li>
+                    <li><strong>Refuge:</strong> <%= sheet.Refuge %></li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Fourth Row: Physical Attributes -->
+              <div class="row mt-4">
+                <h2 class="text-center">Attributs</h2>
+                <div class="col">
+                  <h3 class="text-center"> Physique</h3>
+                  <ul>
+                    <li><strong>Force:</strong> <%= sheet.Force %></li>
+                    <li><strong>Dextérité:</strong> <%= sheet.Dextérité %></li>
+                    <li><strong>Vigueur:</strong> <%= sheet.Vigueur %></li>
+                  </ul>
+                </div>
+                <div class="col">
+                  <h3 class="text-center">Social</h3>
+                  <ul>
+                    <li><strong>Charisme:</strong> <%= sheet.Charisme %></li>
+                    <li><strong>Manipulation:</strong> <%= sheet.Manipulation %></li>
+                    <li><strong>Apparence:</strong> <%= sheet.Apparence %></li>
+                  </ul>
+                </div>
+                <div class="col">
+                  <h3 class="text-center">Mental</h3>
+                  <ul>
+                    <li><strong>Perception:</strong> <%= sheet.Perception %></li>
+                    <li><strong>Intelligence:</strong> <%= sheet.Intelligence %></li>
+                    <li><strong>Astuce:</strong> <%= sheet.Astuce %></li>
+                  </ul>
+                </div>
+              </div>
+
+
+            <div class="row mt-4">
+            <h1 class="text-center">Capacités</h1>
+            <div class="col">
+              <h2 class="text-center">Talents</h2>
+              <ul>
+                <li><strong>Expression:</strong> <%= sheet.Expression %></li>
+                <li><strong>Vigilances:</strong> <%= sheet.Vigilances %></li>
+                <li><strong>Athlétisme:</strong> <%= sheet.Athlétisme %></li>
+                <li><strong>Bagarre:</strong> <%= sheet.Bagarre %></li>
+                <li><strong>Esquive:</strong> <%= sheet.Esquive %></li>
+                <li><strong>Empathie:</strong> <%= sheet.Empathie %></li>
+                <li><strong>Intimidation:</strong> <%= sheet.Intimidation %></li>
+                <li><strong>Passe-passe:</strong> <%= sheet.Passe %></li>
+                <li><strong>Commandement:</strong> <%= sheet.Commandement %></li>
+                <li><strong>Subterfuge:</strong> <%= sheet.Subterfuge %></li>
+                <!-- Add similar lines for other talents -->
+              </ul>
+            </div>
+            <div class="col">
+              <h2 class="text-center">Compétences</h2>
+              <ul>
+                <li><strong>Animaux:</strong> <%= sheet.Animaux %></li>
+                <li><strong>Archerie:</strong> <%= sheet.Archerie %></li>
+                <li><strong>Artisanats:</strong> <%= sheet.Artisanats %></li>
+                <li><strong>Equitation:</strong> <%= sheet.Equitation %></li>
+                <li><strong>Etiquette:</strong> <%= sheet.Etiquette %></li>
+                <li><strong>Furtivité:</strong> <%= sheet.Furtivité %></li>
+                <li><strong>Commerce:</strong> <%= sheet.Expression %></li>
+                <li><strong>Mêlée:</strong> <%= sheet.Mêlée %></li>
+                <li><strong>Représentation:</strong> <%= sheet.Représentation %></li>
+                <li><strong>Survie:</strong> <%= sheet.Survie %></li>
+                <!-- Add similar lines for other compétences -->
+              </ul>
+            </div>
+            <div class="col">
+              <h2 class="text-center">Connaissances</h2>
+              <ul>
+                <li><strong>Erudition:</strong> <%= sheet.Erudition %></li>
+                <li><strong>Investigation:</strong> <%= sheet.Investigation %></li>
+                <li><strong>Droit:</strong> <%= sheet.Droit %></li>
+                <li><strong>Linguistique:</strong> <%= sheet.Linguistique %></li>
+                <li><strong>Médecine:</strong> <%= sheet.Médecine %></li>
+                <li><strong>Occulte:</strong> <%= sheet.Occulte %></li>
+                <li><strong>Sagesse populaire:</strong> <%= sheet.Sagesse %></li>
+                <li><strong>Politique:</strong> <%= sheet.Politique %></li>
+                <li><strong>Sénéchal:</strong> <%= sheet.Sénéchal %></li>
+                <li><strong>Théologie:</strong> <%= sheet.Théologie %></li>
+                <!-- Add similar lines for other connaissances -->
+              </ul>
             </div>
           </div>
-        <% end %>
-      <% else %>
-        <!-- Afficher un PDF par défaut lorsqu'il n'y a pas de fiches -->
-        <div id="sheet">
-          <h1>Modèle de fiche de personnage à télécharger.</h1>
-          <iframe src="https://dark-chronicles.s3.eu-west-3.amazonaws.com/vampire.pdf" width="90%" height="800px"></iframe>
+
+
+            <div class="row mt-4">
+              <div class="col">
+                <h2 class="text-center">Volonté</h2>
+                <ul>
+                  <li><strong>Volonté:</strong> <%= sheet.Volonté %></li>
+                </ul>
+              </div>
+              <div class="col">
+                <h2 class="text-center">Vertus</h2>
+                <ul>
+                  <li><strong>Consciences:</strong> <%= sheet.Consciences %></li>
+                  <li><strong>Maitrise:</strong> <%= sheet.Maitrise %></li>
+                  <li><strong>Courage:</strong> <%= sheet.Courage %></li>
+                </ul>
+              </div>
+              <div class="col voie">
+                <h2 class="text-center">Voie</h2>
+                <ul>
+                  <% if sheet.path.present? %>
+                    <li><strong><%= sheet.path.name.capitalize %>:</strong> <%= sheet.path.value %></li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Historiques -->
+            <div class="row mt-4">
+              <div class="col">
+                <h2 class="text-center">Historiques</h2>
+                <ul>
+                  <% sheet.backgrounds.each do |background| %>
+                    <% if background.value.present? && background.value.to_i.nonzero? %>
+                      <li><strong><%= background.name.capitalize %>:</strong> <%= background.value %></li>
+                    <% end %>
+                  <% end %>
+                </ul>
+              </div>
+
+              <!-- Disciplines -->
+              <div class="col">
+                <h2 class="text-center">Disciplines</h2>
+                <ul>
+                  <% sheet.disciplines.each do |discipline| %>
+                    <% if discipline.value.present? && discipline.value.to_i.nonzero? %>
+                      <li><strong><%= discipline.name.capitalize %>:</strong> <%= discipline.value %></li>
+                    <% end %>
+                  <% end %>
+                </ul>
+              </div>
+
+              <div class="col">
+                <h2 class="text-center">Thaumaturgies</h2>
+                <ul>
+                  <% sheet.voie_thaumaturgiques.each do |voie| %>
+                    <% if voie.value.present? && voie.value.to_i.nonzero? %>
+                      <li><strong><%= voie.name.capitalize %>:</strong> <%= voie.value %></li>
+                    <% end %>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Atouts, Handicaps -->
+            <div class="row mt-4 atouts">
+              <h1 class="text-center">Atouts, Handicaps</h1>
+              <!-- Atouts -->
+              <div class="col">
+                <h2 class="text-center">Atouts</h2>
+                <ul>
+                  <% sheet.advantages.each do |avantage| %>
+                    <% if avantage.value.present? && avantage.value.to_i.nonzero? %>
+                      <li><strong><%= avantage.name.capitalize %>:</strong> <%= avantage.value %></li>
+                      <li><%= avantage.description %></li>
+                    <% end %>
+                  <% end %>
+                </ul>
+              </div>
+
+              <!-- Handicaps -->
+              <div class="col">
+                <h2 class="text-center">Handicaps</h2>
+                <ul>
+                  <% sheet.disadvantages.each do |handicap| %>
+                    <% if handicap.value.present? && handicap.value.to_i.nonzero? %>
+                      <li><strong><%= handicap.name.capitalize %>:</strong> <%= handicap.value %></li>
+                      <li><%= handicap.description %></li>
+                    <% end %>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
-      <% end %>
+
+
+
+        <div class="row mt-4">
+          <div class="col text-center">
+            <%= link_to "Editer la feuille", edit_sheet_path(@sheet), class: "btn btn-secondary" %>
+            <%= link_to 'Supprimer la fiche', sheet, method: :delete, remote: true, data: { turbo_method: :delete, turbo_frame: "sheet_#{sheet.id}" }, class: 'btn btn-danger' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
     </div>
   </div>
 </div>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const toggleButtons = document.querySelectorAll('.toggle-details');
+
+    toggleButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const sheetDetails = this.closest('.sheet').querySelector('.hidden-sheet');
+        sheetDetails.classList.toggle('show-details');
+      });
+    });
+  });
+</script>
