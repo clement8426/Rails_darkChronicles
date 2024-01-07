@@ -118,7 +118,7 @@
       <!-- Historiques -->
     <div class="col">
       <h2 class="text-center">Historiques</h2>
-      <% (1..10).each do |index| %>
+      <% (1..15).each do |index| %>
         <div class="form-group">
           <%= f.fields_for "backgrounds_attributes[]", OpenStruct.new(id: index) do |background_fields| %>
             <%= background_fields.text_field :name, placeholder: "Nom", class: "form-control" %>
@@ -131,7 +131,7 @@
     <!-- Disciplines -->
     <div class="col">
       <h2 class="text-center">Disciplines</h2>
-      <% (1..10).each do |index| %>
+      <% (1..15).each do |index| %>
         <div class="form-group">
           <%= f.fields_for "disciplines_attributes[]", OpenStruct.new(id: index) do |discipline_fields| %>
             <%= discipline_fields.text_field :name, placeholder: "Nom", class: "form-control" %>
@@ -143,7 +143,7 @@
 
     <div class="col">
       <h2 class="text-center">Thaumaturgies</h2>
-      <% (1..10).each do |index| %>
+      <% (1..15).each do |index| %>
         <div class="form-group">
           <%= f.fields_for "voie_thaumaturgiques_attributes[]", OpenStruct.new(id: index) do |voie_fields| %>
             <%= voie_fields.text_field :name, placeholder: "Nom", class: "form-control" %>
