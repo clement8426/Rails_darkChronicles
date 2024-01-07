@@ -32,6 +32,18 @@ Rails.application.routes.draw do
   get 'search_joueur', to: 'groups#add_joueur'
 
 
+  resources :groups do
+    member do
+      post 'add_user'
+      delete 'remove_user'
+      post 'leave_group'
+      get 'leave_group'
+
+    end
+    collection do
+      get 'search'
+    end
+  end
 
   # Defines the root path route ("/")
   # root "posts#index"

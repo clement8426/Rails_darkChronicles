@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-6">
-      <h2>Change your password</h2>
+      <h2>Changer votre mot de passe</h2>
 
       <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: 'form' }) do |f| %>
         <%= f.error_notification %>
@@ -10,23 +10,23 @@
         <%= f.full_error :reset_password_token %>
 
         <div class="form-group">
-          <%= f.label :password, "New password" %>
+          <%= f.label :password, "Nouveau mot de passe" %>
           <%= f.input :password,
                       required: true,
                       autofocus: true,
-                      hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                      hint: ("#{@minimum_password_length} caractères minimum" if @minimum_password_length),
                       input_html: { autocomplete: "new-password", class: 'form-control' }, label: false %>
         </div>
 
         <div class="form-group">
-          <%= f.label :password_confirmation, "Confirm your new password" %>
+          <%= f.label :password_confirmation, "Confirmez votre nouveau mot de passe" %>
           <%= f.input :password_confirmation,
                       required: true,
                       input_html: { autocomplete: "new-password", class: 'form-control' }, label: false %>
         </div>
 
         <div class="form-group">
-          <%= f.button :submit, "Change my password", class: 'btn btn-secondary' %>
+          <%= f.button :submit, "Changer mon mot de passe", class: 'btn btn-secondary' %>
         </div>
       <% end %>
 

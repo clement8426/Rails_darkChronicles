@@ -23,6 +23,10 @@ class PagesController < ApplicationController
 
   def joueur
     @sheets = current_user.sheets
+    user = current_user
 
+    @group_id = user.group_id
+    @group = Group.find_by(id: @group_id)
   end
+
 end

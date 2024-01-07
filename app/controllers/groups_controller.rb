@@ -110,7 +110,19 @@ class GroupsController < ApplicationController
     redirect_to mj_path
   end
 
+  def leave_group
+    @group = Group.find(params[:id])
+    @user = current_user
 
+    if @group.joueurs.exists?(@user.id)
+      @group.joueurs.delete(@user)
+      flash[:notice] = "Vous avez quitté le groupe."
+    else
+      flash[:alert] = "Vous n'êtes pas membre du groupe."
+    end
+
+    redirect_to joueur_path
+  end
 
   private
 
