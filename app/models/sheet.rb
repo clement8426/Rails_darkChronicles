@@ -15,4 +15,7 @@ class Sheet < ApplicationRecord
   accepts_nested_attributes_for :disadvantages
   accepts_nested_attributes_for :path
 
+
+
+
 end

@@ -104,10 +104,10 @@
       </div>
       <div class="col voie">
         <h2 class="text-center">Voie</h2>
-        <%= f.fields_for :path_attributes, OpenStruct.new do |path_fields| %>
+        <%= f.fields_for :path_attributes, @sheet.path || @sheet.build_path do |path_fields| %>
           <div class="form-group">
             <%= path_fields.text_field :name, placeholder: "Nom", class: "form-control" %>
-            <%= path_fields.number_field :value, class: "form-control" %>
+            <%= path_fields.number_field :value, placeholder: "Value", class: "form-control" %>
           </div>
         <% end %>
       </div>
@@ -115,40 +115,40 @@
 
     <div class="row mt-4 disciplines">
       <!-- Historiques -->
-    <div class="col">
-      <h2 class="text-center">Historiques</h2>
-      <% (1..10).each do |index| %>
-        <div class="form-group">
-          <%= f.fields_for "backgrounds_attributes[]", OpenStruct.new(id: index) do |background_fields| %>
-            <%= background_fields.text_field :name, placeholder: "Nom", class: "form-control" %>
-            <%= background_fields.number_field :value, class: "form-control" %>
+      <div class="col">
+        <h2 class="text-center">Historiques</h2>
+        <% @sheet.backgrounds.each do |background| %>
+          <%= f.fields_for :backgrounds, background do |background_fields| %>
+            <div class="form-group">
+              <%= background_fields.text_field :name, placeholder: "Nom", class: "form-control" %>
+              <%= background_fields.number_field :value, class: "form-control" %>
+            </div>
           <% end %>
-        </div>
-      <% end %>
-    </div>
+        <% end %>
+      </div>
 
     <!-- Disciplines -->
     <div class="col">
       <h2 class="text-center">Disciplines</h2>
-      <% (1..10).each do |index| %>
-        <div class="form-group">
-          <%= f.fields_for "disciplines_attributes[]", OpenStruct.new(id: index) do |discipline_fields| %>
+      <% @sheet.disciplines.each do |discipline| %>
+        <%= f.fields_for :disciplines, discipline do |discipline_fields| %>
+          <div class="form-group">
             <%= discipline_fields.text_field :name, placeholder: "Nom", class: "form-control" %>
-            <%= discipline_fields.number_field :value, class: "form-control" %>
-          <% end %>
-        </div>
+            <%= discipline_fields.number_field :value, placeholder: "Value", class: "form-control" %>
+          </div>
+        <% end %>
       <% end %>
     </div>
 
     <div class="col">
       <h2 class="text-center">Thaumaturgies</h2>
-      <% (1..10).each do |index| %>
-        <div class="form-group">
-          <%= f.fields_for "voie_thaumaturgiques_attributes[]", OpenStruct.new(id: index) do |voie_fields| %>
+      <% @sheet.voie_thaumaturgiques.each do |voie| %>
+        <%= f.fields_for :voie_thaumaturgiques, voie do |voie_fields| %>
+          <div class="form-group">
             <%= voie_fields.text_field :name, placeholder: "Nom", class: "form-control" %>
-            <%= voie_fields.number_field :value, class: "form-control" %>
-          <% end %>
-        </div>
+            <%= voie_fields.number_field :value, placeholder: "Value", class: "form-control" %>
+          </div>
+        <% end %>
       <% end %>
     </div>
 
@@ -160,28 +160,28 @@
     <!-- Avantages -->
     <div class="col">
       <h2 class="text-center">Atouts</h2>
-      <% (1..10).each do |index| %>
-        <div class="form-group">
-          <%= f.fields_for "advantages_attributes[]", OpenStruct.new(id: index) do |avantage_fields| %>
-            <%= avantage_fields.text_field :name, placeholder: "Nom de l'atout", class: "form-control" %>
+      <% @sheet.advantages.each do |avantage| %>
+        <%= f.fields_for :advantages, avantage do |avantage_fields| %>
+          <div class="form-group">
+            <%= avantage_fields.text_field :name, placeholder: "Nom", class: "form-control" %>
             <%= avantage_fields.number_field :value, class: "form-control" %>
-            <%= avantage_fields.text_field :description, placeholder: "Description de l'atout", class: "form-control" %>
-          <% end %>
-        </div>
+            <%= avantage_fields.text_field :description, placeholder: "Description", class: "form-control" %>
+          </div>
+        <% end %>
       <% end %>
     </div>
 
     <!-- Handicaps -->
     <div class="col">
       <h2 class="text-center">Handicaps</h2>
-      <% (1..10).each do |index| %>
-        <div class="form-group">
-          <%= f.fields_for "disadvantages_attributes[]", OpenStruct.new(id: index) do |handicap_fields| %>
-            <%= handicap_fields.text_field :name, placeholder: "Nom du handicap", class: "form-control" %>
+      <% @sheet.disadvantages.each do |handicap| %>
+        <%= f.fields_for :disadvantages, handicap do |handicap_fields| %>
+          <div class="form-group">
+            <%= handicap_fields.text_field :name, placeholder: "Nom", class: "form-control" %>
             <%= handicap_fields.number_field :value, class: "form-control" %>
-            <%= handicap_fields.text_field :description, placeholder: "Description du handicap", class: "form-control" %>
-          <% end %>
-        </div>
+            <%= handicap_fields.text_field :description, placeholder: "Description", class: "form-control" %>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>

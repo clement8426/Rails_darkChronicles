@@ -38,20 +38,56 @@ class SheetsController < ApplicationController
 
   def edit
     @sheet = current_user.sheets.find(params[:id])
+
   end
 
   def update
-    @sheet = current_user.sheets.find(params[:id])
+  @sheet = current_user.sheets.find(params[:id])
 
-    capitalize_string_attributes
+  capitalize_string_attributes
 
     respond_to do |format|
-      if @sheet.update(sheet_params)
-        format.html { redirect_to @sheet, notice: 'Fiche mise à jour avec succès.' }
-        format.json { render :show, status: :ok, location: @sheet }
-      else
-        format.html { render :edit }
-        format.json { render json: @sheet.errors, status: :unprocessable_entity }
+      @sheet.transaction do
+        @sheet.advantages.destroy_all
+
+        if sheet_params[:advantages_attributes].present?
+          advantages_attributes = sheet_params[:advantages_attributes].values
+          @sheet.advantages.create(advantages_attributes)
+        end
+
+        @sheet.disadvantages.destroy_all
+
+        if sheet_params[:disadvantages_attributes].present?
+          disadvantages_attributes = sheet_params[:disadvantages_attributes].values
+          @sheet.disadvantages.create(disadvantages_attributes)
+        end
+
+        @sheet.disciplines.destroy_all
+
+        if sheet_params[:disciplines_attributes].present?
+          disciplines_attributes = sheet_params[:disciplines_attributes].values
+          @sheet.disciplines.create(disciplines_attributes)
+        end
+
+        @sheet.backgrounds.destroy_all
+
+        if sheet_params[:backgrounds_attributes].present?
+          backgrounds_attributes = sheet_params[:backgrounds_attributes].values
+          @sheet.backgrounds.create(backgrounds_attributes)
+        end
+
+        @sheet.voie_thaumaturgiques.destroy_all
+
+        if sheet_params[:voie_thaumaturgiques_attributes].present?
+          voie_thaumaturgiques_attributes = sheet_params[:voie_thaumaturgiques_attributes].values
+          @sheet.voie_thaumaturgiques.create(voie_thaumaturgiques_attributes)
+        end
+
+        if @sheet.update(sheet_params.except(:disciplines_attributes, :backgrounds_attributes, :voie_thaumaturgiques_attributes, :advantages_attributes, :disadvantages_attributes))
+          format.html { redirect_to @sheet, notice: 'Fiche actualisée avec succès.' }
+        else
+          format.html { render :edit }
+        end
       end
     end
   end
