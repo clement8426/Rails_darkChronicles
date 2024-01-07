@@ -32,3 +32,11 @@ body {
     display: block;
   }
 }
+
+.hidden-sheet-2 {
+  display: none;
+
+  &.show {
+    display: block;
+  }
+}
