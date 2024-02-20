@@ -3,8 +3,8 @@
     <div class="col-md-4">
     <% if @group.present? %>
       <h2>Votre groupe :</h2>
-      <div class="card text-center">
-          <div class="card-body">
+      <div class="card text-center" style="background: rgba(255, 255, 255, 0.422)">
+          <div class="card-body" >
             <h5 class="card-title"><%= @group.name.capitalize %></h5>
             <p class="card-text">MJ: <%= @group.maitre_de_jeu.name %></p>
 
@@ -245,7 +245,7 @@
 
         <div class="row mt-4">
           <div class="col text-center">
-            <%= link_to "Editer la feuille", edit_sheet_path(@sheet), class: "btn btn-secondary" %>
+            <%= link_to "Editer la feuille", edit_sheet_path(sheet), class: "btn btn-secondary" %>
             <%= link_to 'Supprimer la fiche', sheet, method: :delete, remote: true, data: { turbo_method: :delete, turbo_frame: "sheet_#{sheet.id}" }, class: 'btn btn-danger' %>
           </div>
         </div>
