@@ -17,7 +17,48 @@
                 <div class="card">
                   <div class="card_image">
                     <span class="note"><%= npc.clan %></span>
-                    <img src="https://a0.anyrgb.com/pngimg/1982/16/followers-of-set-ravnos-assamite-onyx-path-publishing-vampire-the-masquerade-clans-and-bloodlines-in-vampire-the-requiem-lasombra-brujah-malkavian-tzimisce.png" alt="mixed vegetable salad in a mason jar." />
+                    <% case npc.clan %>
+                      <% when 'Assamites' %>
+                        <img src="https://res.cloudinary.com/dskcffluq/image/upload/v1708443787/clan%20logo/mzow1sv5wq1k4a1i5oze.png" alt="Assamite" alt="mixed vegetable salad in a mason jar."/>
+                      <% when 'Baali' %>
+                        <img src="https://res.cloudinary.com/dskcffluq/image/upload/v1708444501/clan%20logo/xjbfezhhzb9eor4bppin.webp" alt="Baali" alt="mixed vegetable salad in a mason jar." />
+                      <% when 'Brujah' %>
+                        <img src="https://res.cloudinary.com/dskcffluq/image/upload/v1708443787/clan%20logo/m2rjwxubi7arkgeyixrh.png" alt="Brujah" alt="mixed vegetable salad in a mason jar."/>
+                      <% when 'Inconnu' %>
+                        <img src="https://res.cloudinary.com/dskcffluq/image/upload/v1708444501/clan%20logo/xjbfezhhzb9eor4bppin.webp" alt="Inconnu" alt="mixed vegetable salad in a mason jar."/>
+                      <% when 'Humain' %>
+                        <img src="https://res.cloudinary.com/dskcffluq/image/upload/v1708444501/clan%20logo/xjbfezhhzb9eor4bppin.webp" alt="Humain" alt="mixed vegetable salad in a mason jar."/>
+                      <% when 'Ghoule' %>
+                        <img src="https://res.cloudinary.com/dskcffluq/image/upload/v1708444501/clan%20logo/xjbfezhhzb9eor4bppin.webp" alt="Ghoule" alt="mixed vegetable salad in a mason jar."/>
+                      <% when 'Cappadocian' %>
+                        <img src="https://res.cloudinary.com/dskcffluq/image/upload/v1708444501/clan%20logo/xjbfezhhzb9eor4bppin.webp" alt="Cappadocian" alt="mixed vegetable salad in a mason jar."/>
+                      <% when 'Gangrel' %>
+                        <img src="https://res.cloudinary.com/dskcffluq/image/upload/v1708443788/clan%20logo/quzpeqxp2q7up8chd0w0.png" alt="Gangrel" alt="mixed vegetable salad in a mason jar."/>
+                      <% when 'Giovanni' %>
+                        <img src="https://res.cloudinary.com/dskcffluq/image/upload/v1708444501/clan%20logo/xjbfezhhzb9eor4bppin.webp" alt="Giovanni" alt="mixed vegetable salad in a mason jar."/>
+                      <% when 'Lasombra' %>
+                        <img src="https://res.cloudinary.com/dskcffluq/image/upload/v1708443788/clan%20logo/l88d9efbko1a2znugqib.png" alt="Lasombra" alt="mixed vegetable salad in a mason jar."/>
+                      <% when 'Malkavian' %>
+                        <img src="https://res.cloudinary.com/dskcffluq/image/upload/v1708443788/clan%20logo/i4lu0bpitcucelyschtp.png" alt="Malkavian" alt="mixed vegetable salad in a mason jar."/>
+                      <% when 'Nosferatu' %>
+                        <img src="https://res.cloudinary.com/dskcffluq/image/upload/v1708443787/clan%20logo/izbfeax1gte9eqc5yabi.png" alt="Nosferatu" alt="mixed vegetable salad in a mason jar."/>
+                      <% when 'Ravnos' %>
+                        <img src="https://res.cloudinary.com/dskcffluq/image/upload/v1708443788/clan%20logo/fp4ahs0lgqyueejmyxtk.png" alt="Ravnos" alt="mixed vegetable salad in a mason jar."/>
+                      <% when 'Salubrien' %>
+                        <img src="https://res.cloudinary.com/dskcffluq/image/upload/v1708443787/clan%20logo/fiiw7rvvbapmqeiuvtdw.png" alt="Salubrien" alt="mixed vegetable salad in a mason jar."/>
+                      <% when 'Setite' %>
+                        <img src="https://res.cloudinary.com/dskcffluq/image/upload/v1708443787/clan%20logo/e19rk3y6tokpzgkuhbby.png" alt="Setite" alt="mixed vegetable salad in a mason jar."/>
+                      <% when 'Toreador' %>
+                        <img src="https://res.cloudinary.com/dskcffluq/image/upload/v1708443788/clan%20logo/mfmx8kziixi8q2x2raqz.png" alt="Toreador" alt="mixed vegetable salad in a mason jar."/>
+                      <% when 'Tremere' %>
+                        <img src="https://res.cloudinary.com/dskcffluq/image/upload/v1708444501/clan%20logo/xjbfezhhzb9eor4bppin.webp" alt="Tremere" alt="mixed vegetable salad in a mason jar."/>
+                      <% when 'Tzimisce' %>
+                        <img src="https://res.cloudinary.com/dskcffluq/image/upload/v1708443787/clan%20logo/fpnl5kzzyjvjju86scdy.png" alt="Tzimisce" alt="mixed vegetable salad in a mason jar."/>
+                      <% when 'Ventrue' %>
+                        <img src="https://res.cloudinary.com/dskcffluq/image/upload/v1708443788/clan%20logo/bj5hjuhzlfefmqnboxpi.png" alt="Ventrue" alt="mixed vegetable salad in a mason jar."/>
+                      <% else %>
+                        <img src="https://res.cloudinary.com/dskcffluq/image/upload/v1708444501/clan%20logo/xjbfezhhzb9eor4bppin.webp" alt="Image par défaut" alt="mixed vegetable salad in a mason jar."/>
+                    <% end %>
                     <span class="card_price"><%= npc.generation %></span>
                   </div>
                   <div class="card_content">
