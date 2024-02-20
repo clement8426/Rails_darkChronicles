@@ -10,23 +10,36 @@
 
 <div class="container">
   <div class="row">
-    <% @npcs.each do |npc| %>
-      <div class="col-md-6 mb-4">
-        <div class="card h-100">
-          <div class="card-body d-flex flex-column">
-            <h2 class="card-title"><%= npc.name %> (Generation: <%= npc.generation %>)</h2>
-            <p class="card-text"><strong>Clan:</strong> <%= npc.clan %></p>
-            <p class="card-text"><strong>Secte:</strong> <%= npc.secte %></p>
-            <p class="card-text"><strong>Lieux:</strong> <%= npc.address %></p>
-            <p class="card-text"><strong>Description:</strong> <%= npc.description %></p>
-
-            <div class="d-flex justify-content-between mt-auto">
-              <%= link_to "Modifier PNJ", edit_npc_path(npc), class: 'btn btn-secondary' %>
-              <%= button_to "Supprimer PNJ", npc_path(npc), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger', remote: true %>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
+    <div class="main">
+      <ul class="cards">
+        <% @npcs.each do |npc| %>
+              <li class="cards_item">
+                <div class="card">
+                  <div class="card_image">
+                    <span class="note"><%= npc.clan %></span>
+                    <img src="https://a0.anyrgb.com/pngimg/1982/16/followers-of-set-ravnos-assamite-onyx-path-publishing-vampire-the-masquerade-clans-and-bloodlines-in-vampire-the-requiem-lasombra-brujah-malkavian-tzimisce.png" alt="mixed vegetable salad in a mason jar." />
+                    <span class="card_price"><%= npc.generation %></span>
+                  </div>
+                  <div class="card_content">
+                    <h2 class="card_title"><%= npc.name %></h2>
+                    <div class="card_text">
+                      <p>Lieux: <%= npc.address %>
+                      <br>
+                      Secte: <%= npc.secte %>
+                      </p>
+                      <hr />
+                      <p><%= npc.description %></p>
+                      <hr />
+                      <div class="d-flex justify-content-between mt-auto">
+                        <%= link_to "Modifier PNJ", edit_npc_path(npc), class: 'btn btn-secondary' %>
+                        <%= button_to "Supprimer PNJ", npc_path(npc), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger', remote: true %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </div>
