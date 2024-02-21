@@ -59,8 +59,14 @@
                       <% else %>
                         <img src="https://res.cloudinary.com/dskcffluq/image/upload/v1708444501/clan%20logo/xjbfezhhzb9eor4bppin.webp" alt="Image par défaut" alt="mixed vegetable salad in a mason jar."/>
                     <% end %>
-                    <span class="card_price"><%= npc.generation %></span>
-                  </div>
+                    <span class="card_price">
+                      <% if (npc.generation === "Inconnu") %>
+                        G-?
+                      <% else  %>
+                        <%= npc.generation %>
+                      <% end %>
+                    </span>
+                    </div>
                   <div class="card_content">
                     <h2 class="card_title"><%= npc.name %></h2>
                     <div class="card_text">
