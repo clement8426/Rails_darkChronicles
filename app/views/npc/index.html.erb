@@ -78,8 +78,8 @@
                       <p><%= npc.description %></p>
                       <hr />
                       <div class="d-flex justify-content-between mt-auto">
-                        <%= link_to "Modifier PNJ", edit_npc_path(npc), class: 'btn btn-secondary' %>
-                        <%= button_to "Supprimer PNJ", npc_path(npc), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger', remote: true %>
+                        <%= link_to "Modifier PNJ", edit_npc_path(npc), class: 'btn btn-secondary', style: "margin-right: 0.5em" %>
+                        <%= button_to "Supprimer PNJ", npc_path(npc), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger', remote: true, style: "margin-left: 0.5em" %>
                       </div>
                     </div>
                   </div>
